@@ -58,7 +58,17 @@ public class StudentController {
 		 }
 	}
 	
-	public void swapIndex(Student student, Index ownIndex, Index peerIndex, User peer) {
+	public void swapIndex(Student student, Index ownIndex, Index peerIndex, Student peer, String peerpw) {
+		
+		//need include peer pw checking here
+		//if (peerpw.checkpw)
+		int temp = ownIndex.getIndexNum();
+		for (Index i : student.getRegisteredIndex()) {
+			if (i == ownIndex) ownIndex.setIndexNum(peerIndex.getIndexNum());
+			}
+		for (Index i : peer.getRegisteredIndex()) {
+			if (i == peerIndex) peerIndex.setIndexNum(temp);
+		}
 		
 	}
 }
