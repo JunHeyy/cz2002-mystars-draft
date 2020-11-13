@@ -19,17 +19,27 @@ public class StudentController {
 				ArrayList<Student> studentList = StudentManager.extractStudents();
 				for(Student s : studentList) {
 					if(s.getMatricNum().equals(student.getMatricNum())) {
-						
+						//TODO
 					}
 				}
-				//Expand the index array by 1
+				
 
 
 			}
 		}
 	}
-	public static void removeCourse( Student student, String courseCode) {
+	public static void removeCourse( Student student, String courseCode) throws ClassNotFoundException, IOException {
 		//TODO
+		ArrayList<Student> studentList = StudentManager.extractStudents();
+		for(Student s : studentList) {
+			if(s.getMatricNum().equals(student.getMatricNum())) {
+				Index[] registeredIndex = s.getRegisteredIndex();
+				for(Index i : registeredIndex){
+					//TODO remove index from registeredIndex array then update the db.
+				
+				}
+			}
+		}
 
 	}
 	
@@ -63,7 +73,6 @@ public class StudentController {
 			 }
 		 }
 	}
-	
 	public void swapIndex(Student student, Index ownIndex, Index peerIndex, Student peer, String peerpw) {
 		
 		//need include peer pw checking here
