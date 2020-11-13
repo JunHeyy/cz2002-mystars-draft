@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 public class Course implements Serializable  {
-    
+    //aa
     private String courseCode;
     private String courseName;
     private int numAUs;
@@ -47,7 +47,7 @@ public class Course implements Serializable  {
         this.indexList = indexList;
     }
     public int getVacancies() {
-    	return 1; //TODO
+    	return 2; //TODO
     }
     
     @Override
