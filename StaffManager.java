@@ -18,7 +18,7 @@ public class StaffManager {
         if(found==0) {
         	staffList.add(staff);
         	System.out.println("Succesfully added staff into the database");
-            IOController.writeFile(filename, staffList);
+            UpdateStaffDB(staffList);
         }
         
     }
@@ -33,7 +33,7 @@ public class StaffManager {
             }
         }
         if (toDelete != null) staffList.remove(toDelete);
-        IOController.writeFile(filename, staffList);
+        UpdateStaffDB(staffList);
     }
     
     
