@@ -1,13 +1,13 @@
 import java.io.Serializable;
 
-public class Course implements Serializable  {
-    //aa
+public class Course implements Serializable, Chicken  {
+    //aabbcc
     private String courseCode;
     private String courseName;
     private int numAUs;
     private Index[] indexList;
     
-
+    public void eat() { }
     public Course(String courseCode, String courseName, int numAUs, Index[] indexList) {
         this.courseCode = courseCode;
         this.courseName = courseName;
