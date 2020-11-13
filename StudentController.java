@@ -44,6 +44,12 @@ public class StudentController {
 	
 	public void checkVacancies(int indexNum) throws ClassNotFoundException, IOException {
 		ArrayList<Index> indexList = IndexManager.extractIndex();
+		for (Index i : indexList) {
+			if(i.getIndexNum() == indexNum) {
+				int vacancies = i.getMaxSize() - i.getNumStudents();
+				System.out.printf("Vacancies left %d for Course Index: %s", vacancies, indexNum);
+			}
+		}
 		
 	}
 	
