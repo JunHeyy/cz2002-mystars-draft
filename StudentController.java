@@ -42,7 +42,8 @@ public class StudentController {
 		
 	}
 	
-	public void checkVacancies(String courseCode) {
+	public void checkVacancies(int indexNum) throws ClassNotFoundException, IOException {
+		ArrayList<Index> indexList = IndexManager.extractIndex();
 		
 	}
 	
