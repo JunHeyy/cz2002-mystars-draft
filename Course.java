@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 public class Course implements Serializable  {
-    //aa
+    //aabbcc
     private String courseCode;
     private String courseName;
     private int numAUs;
