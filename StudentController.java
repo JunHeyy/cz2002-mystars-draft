@@ -16,7 +16,7 @@ public class StudentController {
 			}
 			else {
 				//Add new course into Index
-				ArrayList<Student> studentList = StudentManager.extractStudents();
+				ArrayList<Student> studentList = StudentManager.extractDB();
 				for(Student s : studentList) {
 					if(s.getMatricNum().equals(student.getMatricNum())) {
 						//TODO
@@ -30,7 +30,7 @@ public class StudentController {
 	}
 	public static void removeCourse( Student student, String courseCode) throws ClassNotFoundException, IOException {
 		//TODO
-		ArrayList<Student> studentList = StudentManager.extractStudents();
+		ArrayList<Student> studentList = StudentManager.extractDB();
 		for(Student s : studentList) {
 			if(s.getMatricNum().equals(student.getMatricNum())) {
 				Index[] registeredIndex = s.getRegisteredIndex();
@@ -43,17 +43,10 @@ public class StudentController {
 
 	}
 	
-	public static void printCourseRegistered(Student student) {
-		 for (Index index : student.getRegisteredIndex()) {
-			 System.out.println("Student is registered in " + index.getCourseCode() + " " + index.getIndexNum());
-		 }
-		
-		
-		
-	}
+
 	
 	public void checkVacancies(int indexNum) throws ClassNotFoundException, IOException {
-		ArrayList<Index> indexList = IndexManager.extractIndex();
+		ArrayList<Index> indexList = IndexManager.extractDB();
 		for (Index i : indexList) {
 			if(i.getIndexNum() == indexNum) {
 				int vacancies = i.getMaxSize() - i.getNumStudents();
@@ -63,22 +56,37 @@ public class StudentController {
 		
 	}
 	
-	public static void changeIndex(Student student, int newIndex, String Coursecode) throws ClassNotFoundException, IOException {
-        ArrayList<Student> studentList = StudentManager.extractStudents();
+	public static void changeIndex(Student student, int newIndex, String Coursecode, int oldIndex) throws ClassNotFoundException, IOException { //tested
+        ArrayList<Student> studentList = StudentManager.extractDB();
         for(Student s : studentList) {
             if(s.getMatricNum().equals(student.getMatricNum())) {
+            	System.out.println("Found student");
                  for (Index index : s.getRegisteredIndex()) {
                      if(index.getCourseCode().equals(Coursecode)) {
-                         //TO DO add error checking
-                         index.setIndexNum(newIndex);
-                         System.out.println("Successful! Changed index from "+ index.getIndexNum() + " to "+ newIndex);
-                         StudentManager.UpdateStudentDB(studentList);
-                         break;
+                    	 if(newIndex != index.getIndexNum()) {
+	                         index.setIndexNum(newIndex);
+	                         System.out.println("Successful! Changed index from "+ index.getIndexNum() + " to "+ newIndex);
+	                         IndexManager.slotGiven(newIndex);
+	                         IndexManager.slotRemoved(oldIndex);
+	                         StudentManager.UpdateStudentDB(studentList);
+	                         break;}
+                    	 else System.out.println("Index is the same");
                      }
                  }
             }
         }
     }
+	public static void printCourseRegistered(Student student) throws ClassNotFoundException, IOException { //tested
+		 ArrayList<Student> studentList = StudentManager.extractDB();
+		 for(Student s: studentList) {
+			 if(s.getMatricNum().equals(student.getMatricNum())) {
+				 System.out.println("Student found");
+				 for (Index index : s.getRegisteredIndex()) {
+					 System.out.println("Student name: " + s.getName()+ " is registered\nCourseCode: " + index.getCourseCode() + "\nIndexNum: " + index.getIndexNum());
+				 }
+			 }
+		 }	
+	}
 	public void swapIndex(Student student, Index ownIndex, Index peerIndex, Student peer, String peerpw) {
 		Index temp = ownIndex;
 		for (Index i : student.getRegisteredIndex()) {

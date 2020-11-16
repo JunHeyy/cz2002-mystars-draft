@@ -27,7 +27,7 @@ public class IndexManager {
     public static void removeIndex(int index) throws IOException, ClassNotFoundException {
     	try {
 	        Index toRemove = null;
-	        ArrayList<Index> indexList = IOController.readFile(filename);
+	        ArrayList<Index> indexList = extractDB();
 	        for (Index i: indexList) {
 	            if (i.getIndexNum() == index) {
 	                toRemove = i;
@@ -48,8 +48,30 @@ public class IndexManager {
         
     }
     
+    public static void slotGiven(int index) throws IOException, ClassNotFoundException{
+    	 ArrayList<Index> indexList = extractDB();
+    	 for(Index i: indexList) {
+    		 if(i.getIndexNum() == index) {
+    			 i.setNumStudents(i.getNumStudents() +1);
+	    		 UpdateCourseDB(indexList);
+	    		 break;
+    		 }
+    	 }
+    }
     
-    public static ArrayList<Index> extractIndex() throws IOException, ClassNotFoundException {
+    public static void slotRemoved(int index) throws IOException, ClassNotFoundException{
+   	 ArrayList<Index> indexList = extractDB();
+   	 for(Index i: indexList) {
+   		 if(i.getIndexNum() == index) {
+   			 i.setNumStudents(i.getNumStudents() -1); 
+   		 	 UpdateCourseDB(indexList);
+   		 	 break;
+   		 }
+   	 }
+   }
+    
+    
+    public static ArrayList<Index> extractDB() throws IOException, ClassNotFoundException {
     	try {
 	        ArrayList<Index> indexList = IOController.readFile(filename);
 	        return indexList;

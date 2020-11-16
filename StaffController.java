@@ -61,7 +61,7 @@ public class StaffController{
 	public static void printStudentByIndex(int IndexNum) {
 		//Need to test!!
 		try {
-	        ArrayList<Student> studentList = StudentManager.extractStudents();
+	        ArrayList<Student> studentList = StudentManager.extractDB();
 	        for (Student s: studentList) { 
 	        	Index[] registeredIndex;
 	        	//Get the indexArray the student object register
@@ -85,7 +85,7 @@ public class StaffController{
 	
 	public static void printStudentByCourse(String courseCode) {
 		try {
-	        ArrayList<Student> studentList = StudentManager.extractStudents();
+	        ArrayList<Student> studentList = StudentManager.extractDB();
 	        
 	        for (Student s: studentList) { 
 	        	Index[] registeredIndex;

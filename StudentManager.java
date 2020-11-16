@@ -12,7 +12,7 @@ public class StudentManager {
 	        int found=0;
 	        for (Student s: studentList) {
 	            if (s.getUsername().equals(student.getUsername())) {
-	                System.out.println("There is already an existing username");
+	                System.out.println("This student already exist in the database, unable to add student");
 	                found =1;
 	                break;
 	            }
@@ -48,7 +48,7 @@ public class StudentManager {
        
     }
     
-    public static ArrayList<Student> extractStudents() throws IOException, ClassNotFoundException {
+    public static ArrayList<Student> extractDB() throws IOException, ClassNotFoundException {
     	try {
 	        ArrayList<Student> studentList = IOController.readFile(filename);
 	        return studentList;
