@@ -12,7 +12,7 @@ public class CourseManager implements StarsManager{
     private static final String filename = "data/Course.dat";
     
     
-    public void addObj(Course course) throws IOException, ClassNotFoundException {
+    public void addCourse(Course course) throws IOException, ClassNotFoundException {
         
         ArrayList<Course> courseList = IOController.readFile(filename);
         int found =0;
@@ -30,7 +30,7 @@ public class CourseManager implements StarsManager{
         }
     }
 
-    public static void remove(String courseCode) throws IOException, ClassNotFoundException {
+    public static void removeCourse(String courseCode) throws IOException, ClassNotFoundException {
     	courseList = IOController.readFile(filename);
         Course toDelete = null;
         for (Course c: courseList) {
