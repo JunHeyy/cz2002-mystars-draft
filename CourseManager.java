@@ -57,9 +57,11 @@ public class CourseManager implements StarsManager{
    		 if(c.getCourseCode().equals(CourseCode)) {
    			 for(Index i : c.getIndexList()) {
    				 if(i.getIndexNum() == newIndex) {
-   					 System.out.println("Slot taken, Vacancies has been updated to: " + (i.getNumStudents()+ 1)+ " For Index: " + newIndex);
+   					 
    					 i.setNumStudents(i.getNumStudents()+ 1);
+   					 System.out.println("Slot taken, Vacancies has been updated to: " + (i.getMaxSize()-i.getNumStudents())+ " For Index: " + newIndex);
    					 UpdateDB(courseList);
+   					 
    					 break;
    				 }
    			 }
@@ -73,9 +75,11 @@ public class CourseManager implements StarsManager{
 	   		 if(c.getCourseCode().equals(CourseCode)) {
 	   			 for(Index i : c.getIndexList()) {
 	   				 if(i.getIndexNum() == oldIndex) {
-	   					 System.out.println("Slot given back, Vacancies available now: " + (i.getNumStudents()- 1) + " For Index: " + oldIndex);
+	   					 
 	   					 i.setNumStudents(i.getNumStudents() - 1);
+	   					 System.out.println("Slot given back, Vacancies available now: " + (i.getMaxSize()-i.getNumStudents()) + " For Index: " + oldIndex);
 	   					 UpdateDB(courseList);
+	   					 
 	   					 break;
 	   				 }
 	   			 }

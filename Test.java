@@ -49,27 +49,34 @@ public class Test {
         //Index(int indexNum, String courseCode, int maxSize, int numStudents, Lesson[] lessons)
         
         index1[0] = new Index(1, "CZ2005", 4, 4, lesson);
-        index1[1] = new Index(2, "CZ2006", 5, 4, lesson);
-        index1[2] = new Index(3, "CZ2005", 4, 2, lesson);
+        index1[1] = new Index(9, "CZ2006", 5, 4, lesson);
+        index1[2] = new Index(10, "CZ2007", 4, 2, lesson);
         
+        Index [] indexCourse = new Index[3];
+        //Index(int indexNum, String courseCode, int maxSize, int numStudents, Lesson[] lessons)
+        
+        indexCourse[0] = new Index(1, "CZ2005", 4, 4, lesson);
+        indexCourse[1] = new Index(2, "CZ2005", 5, 4, lesson);
+        indexCourse[2] = new Index(3, "CZ2005", 4, 2, lesson);
         
         // Coursecode, coursename, num AU, Index
-        Course course2 = new Course("CZ2005", "Operating Systems", 3, index1);
+        Course course2 = new Course("CZ2005", "Operating Systems", 3, indexCourse);
         CourseManager.removeCourse("CZ2005");
         CourseManager.addCourse(course2);
         //Student(String username, String password, String name, String matricNum, char gender, String nationality,  int yearOfStudy, Index[] registeredIndex, LocalTime startAccessTime,
         		//LocalTime endAccessTime)
+        
         Student s1 = new Student("dan_user", "pw123", "dan", "U192456", 'M', "SG", 4, index1, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
         StudentController sc = new StudentController();
         sc.checkVacancies(1);
-        StudentManager.removeUser("dan");
+        StudentManager.removeUser("dan_user");
         StudentManager.addStudent(s1);
-        StudentController.printCourseRegistered(s1);
-        sc.checkVacancies(1);
+       // StudentController.printCourseRegistered(s1);
+       // sc.checkVacancies(1);
         // new index, old index
         StudentController.changeIndex(s1, 3, "CZ2005", 1);
-        StudentController.printCourseRegistered(s1);
-        sc.checkVacancies(1);
+       // StudentController.printCourseRegistered(s1);
+        //sc.checkVacancies(1);
         
 	}
 }
