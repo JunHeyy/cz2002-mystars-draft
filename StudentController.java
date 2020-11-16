@@ -63,16 +63,22 @@ public class StudentController {
 		
 	}
 	
-	public static void changeIndex(Student student, int newIndex, String Coursecode) {
-		 for (Index index : student.getRegisteredIndex()) {
-			 if(index.getCourseCode().equals(Coursecode)) {
-				 //TO DO add error checking
-				 index.setIndexNum(newIndex);
-				 System.out.println("Successful! Changed index from "+ index.getIndexNum()+ " to "+ newIndex);
-				 break;
-			 }
-		 }
-	}
+	public static void changeIndex(Student student, int newIndex, String Coursecode) throws ClassNotFoundException, IOException {
+        ArrayList<Student> studentList = StudentManager.extractStudents();
+        for(Student s : studentList) {
+            if(s.getMatricNum().equals(student.getMatricNum())) {
+                 for (Index index : s.getRegisteredIndex()) {
+                     if(index.getCourseCode().equals(Coursecode)) {
+                         //TO DO add error checking
+                         index.setIndexNum(newIndex);
+                         System.out.println("Successful! Changed index from "+ index.getIndexNum() + " to "+ newIndex);
+                         StudentManager.UpdateStudentDB(studentList);
+                         break;
+                     }
+                 }
+            }
+        }
+    }
 	public void swapIndex(Student student, Index ownIndex, Index peerIndex, Student peer, String peerpw) {
 		Index temp = ownIndex;
 		for (Index i : student.getRegisteredIndex()) {

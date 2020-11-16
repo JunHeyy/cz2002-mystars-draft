@@ -55,7 +55,7 @@ public class Test {
         //Staff s2 = new Staff("lll", "4523", 1);
         StudentController.printCourseRegistered(s1);
         //StudentController.printCourseRegistered(s);
-        StudentController.changeIndex(s1, 2, "dcf");
+        StudentController.changeIndex(s1, 2, "def");
         //StudentController.swapIndex(s, index[0], index1[1], s1, "456");
         StudentController.printCourseRegistered(s1);
         //StudentController.printCourseRegistered(s);
