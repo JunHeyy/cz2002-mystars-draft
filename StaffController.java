@@ -40,7 +40,8 @@ public class StaffController{
 	
 	public void addCourse(Course newCourse) {
 		try {
-			CourseManager.addCourse(newCourse);
+			CourseManager CM = new CourseManager();
+			CM.addObj(newCourse);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -103,6 +104,18 @@ public class StaffController{
 			System.out.println("File not found");
 			
 		}
+	}
+	
+	public void printAllCourses() {
+		try {
+	        ArrayList<Course> courseList = CourseManager.extractDB();
+	        System.out.println("These are the following Courses registered");
+	        for (Course c: courseList) { 
+	        	System.out.println(c.getCourseName());
+
+	        	
+	        }
+		}catch(Exception e) {System.out.println("File not found");}
 	}
 	
 }

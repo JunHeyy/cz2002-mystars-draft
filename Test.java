@@ -27,6 +27,10 @@ public class Test {
        
 
         Course course1 = new Course("abc", "cde", 3, index);
+        StaffController SC = new StaffController();
+        
+        SC.addCourse(course1);
+        SC.printAllCourses();
         
 
 		
