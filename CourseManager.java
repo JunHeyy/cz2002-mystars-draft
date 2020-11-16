@@ -12,7 +12,7 @@ public class CourseManager implements StarsManager{
     private static final String filename = "data/Course.dat";
     
     
-    public void addCourse(Course course) throws IOException, ClassNotFoundException {
+    public static void addCourse(Course course) throws IOException, ClassNotFoundException {
         
         ArrayList<Course> courseList = IOController.readFile(filename);
         int found =0;

@@ -40,8 +40,7 @@ public class StaffController{
 	
 	public void addCourse(Course newCourse) {
 		try {
-			CourseManager CM = new CourseManager();
-			CM.addObj(newCourse);
+			CourseManager.addCourse(newCourse);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
