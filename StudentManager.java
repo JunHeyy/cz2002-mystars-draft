@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class StudentManager {
 
     private static ArrayList<Student> studentList;
-    private static final String filename = "src/data/Students.dat";
+    private static final String filename = "data/Students.dat";
 
     public static void addStudent(Student student) throws IOException, ClassNotFoundException {
         try {

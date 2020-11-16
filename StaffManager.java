@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class StaffManager {
 
     private static ArrayList<Staff> staffList;
-    private static final String filename = "src/data/Staff.dat";
+    private static final String filename = "data/Staff.dat";
 
     public static void addStaff(Staff staff) throws IOException, ClassNotFoundException {
         staffList = IOController.readFile(filename);

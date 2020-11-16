@@ -6,13 +6,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-public class CourseManager {
+public class CourseManager implements StarsManager{
 	
     private static ArrayList<Course> courseList;
-    private static final String filename = "src/data/Course.dat";
-
-    public static void addCourse(Course course) throws IOException, ClassNotFoundException {
-        String filename = "src/data/Courses.dat";
+    private static final String filename = "data/Course.dat";
+    
+    
+    public void addObj(Course course) throws IOException, ClassNotFoundException {
+        
         ArrayList<Course> courseList = IOController.readFile(filename);
         int found =0;
         for(Course c : courseList) {
@@ -29,7 +30,7 @@ public class CourseManager {
         }
     }
 
-    public static void removeCourse(String courseCode) throws IOException, ClassNotFoundException {
+    public static void remove(String courseCode) throws IOException, ClassNotFoundException {
     	courseList = IOController.readFile(filename);
         Course toDelete = null;
         for (Course c: courseList) {
@@ -50,9 +51,9 @@ public class CourseManager {
         
     }
     
-    public static ArrayList<Course> extractCourse() {
+    public static ArrayList<Course> extractDB() {
     	try {
-	        ArrayList<Course> courseList = IOController.readFile("src/data/Courses.dat");
+	        ArrayList<Course> courseList = IOController.readFile(filename);
 	        return courseList;
 		}
 		catch(Exception e) {
@@ -62,7 +63,7 @@ public class CourseManager {
     }
     
     
-    public static void UpdateCourseDB(ArrayList<Course> courseList) {
+    public static void UpdateDB(ArrayList<Course> courseList) {
     	try {
 			IOController.writeFile(filename, courseList);
 		} catch (IOException e) {

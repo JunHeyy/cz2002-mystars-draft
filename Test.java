@@ -21,7 +21,11 @@ public class Test {
         index[1] = new Index(2, "cdef", 3, 4, lesson);
        
 
-        Course course1 = new Course("dcf", "cde", 3, index);
+        Course course1 = new Course("abc", "cde", 3, index);
+        StaffController SC = new StaffController();
+        
+        SC.addCourse(course1);
+        SC.printAllCourses();
         
         Student s = new Student("tom", "123", "tom", "123", 'M', "SG", 3, index, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
         
@@ -43,7 +47,7 @@ public class Test {
         index1[1] = new Index(2, "zzzz", 3, 4, lesson);
        
 
-        Course course2 = new Course("abc", "cde", 3, index1);
+        Course course2 = new Course("def", "cde", 3, index1);
         
         Student s1 = new Student("dan", "456", "dan", "456", 'M', "SG", 4, index1, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
 		
