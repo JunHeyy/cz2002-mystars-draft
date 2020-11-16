@@ -28,8 +28,8 @@ public class Test {
 
         Course course1 = new Course("abc", "cde", 3, index);
         StaffController SC = new StaffController();
-        SC.addCourse(course1);
-        SC.printAllCourses();
+       // SC.addCourse(course1);
+       // SC.printAllCourses();
         
         Student s = new Student("tom", "123", "tom", "123", 'M', "SG", 3, index, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
         
@@ -45,29 +45,31 @@ public class Test {
         lesson1[0] = new Lesson("abc", "Jurong", "SSP3", time);
         lesson1[1] = new Lesson("abc", "Jurong", "SSP3", time);
         
-        Index [] index1 = new Index[2];
+        Index [] index1 = new Index[3];
         //Index(int indexNum, String courseCode, int maxSize, int numStudents, Lesson[] lessons)
         
-        index1[0] = new Index(1, "CZ2005", 4, 1, lesson);
+        index1[0] = new Index(1, "CZ2005", 4, 4, lesson);
         index1[1] = new Index(2, "CZ2006", 5, 4, lesson);
-        
+        index1[2] = new Index(3, "CZ2005", 4, 2, lesson);
         
         
         // Coursecode, coursename, num AU, Index
         Course course2 = new Course("CZ2005", "Operating Systems", 3, index1);
         CourseManager.removeCourse("CZ2005");
         CourseManager.addCourse(course2);
-        
-        Student s1 = new Student("dan", "456", "dan", "456", 'M', "SG", 4, index1, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
+        //Student(String username, String password, String name, String matricNum, char gender, String nationality,  int yearOfStudy, Index[] registeredIndex, LocalTime startAccessTime,
+        		//LocalTime endAccessTime)
+        Student s1 = new Student("dan_user", "pw123", "dan", "U192456", 'M', "SG", 4, index1, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
         StudentController sc = new StudentController();
         sc.checkVacancies(1);
         StudentManager.removeUser("dan");
         StudentManager.addStudent(s1);
         StudentController.printCourseRegistered(s1);
-        
+        sc.checkVacancies(1);
+        // new index, old index
         StudentController.changeIndex(s1, 3, "CZ2005", 1);
         StudentController.printCourseRegistered(s1);
-        
         sc.checkVacancies(1);
+        
 	}
 }

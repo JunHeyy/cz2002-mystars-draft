@@ -53,30 +53,47 @@ public class StudentController {
 				if(i.getIndexNum() == indexNum) {
 					int vacancies = i.getMaxSize() - i.getNumStudents();
 					System.out.printf("Vacancies left %d for Course Index: %s\n", vacancies, indexNum);
+					break;
 				}
 			}
 		}
 		
 	}
+	public static int checkVacanciesForIndex(int indexNum) throws ClassNotFoundException, IOException {
+        ArrayList<Course> courseList = CourseManager.extractDB();
+        int vacancies;
+        for (Course c : courseList) {
+            Index[] indexList = c.getIndexList();
+            for(Index i :indexList) {
+                if(i.getIndexNum() == indexNum) {
+                    vacancies = i.getMaxSize() - i.getNumStudents();
+                    return vacancies;
+                }
+            }
+        }
+        return 0;
+    }
 	
 	public static void changeIndex(Student student, int newIndex, String Coursecode, int oldIndex) throws ClassNotFoundException, IOException { //tested
         ArrayList<Student> studentList = StudentManager.extractDB();
         for(Student s : studentList) {
             if(s.getMatricNum().equals(student.getMatricNum())) {
-            	;
                  for (Index index : s.getRegisteredIndex()) {
                      if(index.getCourseCode().equals(Coursecode)) {
-                    	 if(newIndex != index.getIndexNum()) {
-	                        
-	                         System.out.println("Changing Index...");
-	                         System.out.println("Successful! Changed index from "+ index.getIndexNum() + " to "+ newIndex);
-	                         index.setIndexNum(newIndex);
-	                         
-	                         CourseManager.slotTaken(newIndex,Coursecode);
-	                         CourseManager.slotGivenBack(oldIndex,Coursecode);
-	                         StudentManager.UpdateStudentDB(studentList);
-	                         break;}
-                    	 else System.out.println("Index is the same");
+                         if(newIndex != index.getIndexNum()) {
+                            if (checkVacanciesForIndex(newIndex)>0) {
+                                System.out.println("Changing Index...");
+                             System.out.println("Successful! Changed index from "+ index.getIndexNum() + " to "+ newIndex);
+                             index.setIndexNum(newIndex);
+
+                             CourseManager.slotTaken(newIndex,Coursecode);
+                             CourseManager.slotGivenBack(oldIndex,Coursecode);
+                             StudentManager.UpdateStudentDB(studentList);
+                             break;
+                             }
+                            else { System.out.println("There is no vacancy for this index"); break;}
+                         }
+                         else System.out.println("Index is the same");
                      }
                  }
             }
