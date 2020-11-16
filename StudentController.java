@@ -66,8 +66,8 @@ public class StudentController {
                     	 if(newIndex != index.getIndexNum()) {
 	                         index.setIndexNum(newIndex);
 	                         System.out.println("Successful! Changed index from "+ index.getIndexNum() + " to "+ newIndex);
-	                         IndexManager.slotGiven(newIndex);
-	                         IndexManager.slotRemoved(oldIndex);
+	                         CourseManager.slotTaken(newIndex,Coursecode);
+	                         CourseManager.slotGivenBack(oldIndex,Coursecode);
 	                         StudentManager.UpdateStudentDB(studentList);
 	                         break;}
                     	 else System.out.println("Index is the same");

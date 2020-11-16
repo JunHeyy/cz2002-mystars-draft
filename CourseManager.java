@@ -25,7 +25,7 @@ public class CourseManager implements StarsManager{
         }
         if(found==0) {
         	courseList.add(course);
-	        System.out.println("Succesfully added student into the database");
+	        System.out.println("Succesfully added Course into the database");
 	        IOController.writeFile(filename, courseList);
         }
     }
@@ -50,6 +50,34 @@ public class CourseManager implements StarsManager{
         }
         
     }
+    
+    public static void slotTaken(int newIndex,String CourseCode) throws IOException, ClassNotFoundException{
+   	 ArrayList<Course> courseList = extractDB();
+   	 for(Course c: courseList) {
+   		 if(c.getCourseCode().equals(CourseCode)) {
+   			 for(Index i : c.getIndexList()) {
+   				 if(i.getIndexNum() == newIndex) {
+   					 System.out.println("Vacancies available now: " + (i.getNumStudents()+ 1));
+   					 i.setNumStudents(i.getNumStudents()+ 1);
+   				 }
+   			 }
+   		 }
+   	 }
+   }
+   
+   public static void slotGivenBack(int oldIndex, String CourseCode) throws IOException, ClassNotFoundException{
+	   	 ArrayList<Course> courseList = extractDB();
+	   	 for(Course c: courseList) {
+	   		 if(c.getCourseCode().equals(CourseCode)) {
+	   			 for(Index i : c.getIndexList()) {
+	   				 if(i.getIndexNum() == oldIndex) {
+	   					 System.out.println("Vacancies available now: " + (i.getNumStudents()- 1));
+	   					 i.setNumStudents(i.getNumStudents() - 1);
+	   				 }
+	   			 }
+	   		 }
+	   	 }
+  }
     
     public static ArrayList<Course> extractDB() {
     	try {

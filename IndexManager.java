@@ -48,27 +48,7 @@ public class IndexManager {
         
     }
     
-    public static void slotGiven(int index) throws IOException, ClassNotFoundException{
-    	 ArrayList<Index> indexList = extractDB();
-    	 for(Index i: indexList) {
-    		 if(i.getIndexNum() == index) {
-    			 i.setNumStudents(i.getNumStudents() +1);
-	    		 UpdateCourseDB(indexList);
-	    		 break;
-    		 }
-    	 }
-    }
-    
-    public static void slotRemoved(int index) throws IOException, ClassNotFoundException{
-   	 ArrayList<Index> indexList = extractDB();
-   	 for(Index i: indexList) {
-   		 if(i.getIndexNum() == index) {
-   			 i.setNumStudents(i.getNumStudents() -1); 
-   		 	 UpdateCourseDB(indexList);
-   		 	 break;
-   		 }
-   	 }
-   }
+
     
     
     public static ArrayList<Index> extractDB() throws IOException, ClassNotFoundException {

@@ -48,14 +48,15 @@ public class Test {
         Index [] index1 = new Index[2];
         //Index(int indexNum, String courseCode, int maxSize, int numStudents, Lesson[] lessons)
         
-        index1[0] = new Index(1, "CZ2006", 4, 1, lesson);
-        index1[1] = new Index(2, "CZ2001", 5, 4, lesson);
+        index1[0] = new Index(1, "CZ2005", 4, 1, lesson);
+        index1[1] = new Index(2, "CZ2005", 5, 4, lesson);
         
         
         
         // Coursecode, coursename, num AU, Index
-        Course course2 = new Course("def", "cde", 3, index1);
-        
+        Course course2 = new Course("CZ2005", "Operating Systems", 3, index1);
+        CourseManager.removeCourse("CZ2005");
+        CourseManager.addCourse(course2);;
         Student s1 = new Student("dan", "456", "dan", "456", 'M', "SG", 4, index1, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
         
         StudentManager.removeUser("dan");
