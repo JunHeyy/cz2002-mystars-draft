@@ -49,29 +49,25 @@ public class Test {
         //Index(int indexNum, String courseCode, int maxSize, int numStudents, Lesson[] lessons)
         
         index1[0] = new Index(1, "CZ2005", 4, 1, lesson);
-        index1[1] = new Index(2, "CZ2005", 5, 4, lesson);
+        index1[1] = new Index(2, "CZ2006", 5, 4, lesson);
         
         
         
         // Coursecode, coursename, num AU, Index
         Course course2 = new Course("CZ2005", "Operating Systems", 3, index1);
         CourseManager.removeCourse("CZ2005");
-        CourseManager.addCourse(course2);;
+        CourseManager.addCourse(course2);
+        
         Student s1 = new Student("dan", "456", "dan", "456", 'M', "SG", 4, index1, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
-        
-        StudentManager.removeUser("dan");
-        StudentManager.addStudent(s1);
-        
-        //System.out.println(s.getRegisteredIndex());
-        //Staff s2 = new Staff("lll", "4523", 1);
-        //StudentController.printCourseRegistered(s1);
-        //StudentController.printCourseRegistered(s);
-        
-        StudentController.changeIndex(s1, 1, "CZ2006", 2);
-        //StudentController.swapIndex(s, index[0], index1[1], s1, "456");
-        StudentController.printCourseRegistered(s1);
         StudentController sc = new StudentController();
         sc.checkVacancies(1);
-        //StudentController.printCourseRegistered(s);
+        StudentManager.removeUser("dan");
+        StudentManager.addStudent(s1);
+        StudentController.printCourseRegistered(s1);
+        
+        StudentController.changeIndex(s1, 3, "CZ2005", 1);
+        StudentController.printCourseRegistered(s1);
+        
+        sc.checkVacancies(1);
 	}
 }

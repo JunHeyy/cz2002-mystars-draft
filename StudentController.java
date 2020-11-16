@@ -46,11 +46,14 @@ public class StudentController {
 
 	
 	public void checkVacancies(int indexNum) throws ClassNotFoundException, IOException {
-		ArrayList<Index> indexList = IndexManager.extractDB();
-		for (Index i : indexList) {
-			if(i.getIndexNum() == indexNum) {
-				int vacancies = i.getMaxSize() - i.getNumStudents();
-				System.out.printf("Vacancies left %d for Course Index: %s", vacancies, indexNum);
+		ArrayList<Course> courseList = CourseManager.extractDB();
+		for (Course c : courseList) {
+			Index[] indexList = c.getIndexList();
+			for(Index i :indexList) {
+				if(i.getIndexNum() == indexNum) {
+					int vacancies = i.getMaxSize() - i.getNumStudents();
+					System.out.printf("Vacancies left %d for Course Index: %s\n", vacancies, indexNum);
+				}
 			}
 		}
 		
@@ -60,12 +63,15 @@ public class StudentController {
         ArrayList<Student> studentList = StudentManager.extractDB();
         for(Student s : studentList) {
             if(s.getMatricNum().equals(student.getMatricNum())) {
-            	System.out.println("Found student");
+            	;
                  for (Index index : s.getRegisteredIndex()) {
                      if(index.getCourseCode().equals(Coursecode)) {
                     	 if(newIndex != index.getIndexNum()) {
-	                         index.setIndexNum(newIndex);
+	                        
+	                         System.out.println("Changing Index...");
 	                         System.out.println("Successful! Changed index from "+ index.getIndexNum() + " to "+ newIndex);
+	                         index.setIndexNum(newIndex);
+	                         
 	                         CourseManager.slotTaken(newIndex,Coursecode);
 	                         CourseManager.slotGivenBack(oldIndex,Coursecode);
 	                         StudentManager.UpdateStudentDB(studentList);
@@ -80,9 +86,9 @@ public class StudentController {
 		 ArrayList<Student> studentList = StudentManager.extractDB();
 		 for(Student s: studentList) {
 			 if(s.getMatricNum().equals(student.getMatricNum())) {
-				 System.out.println("Student found");
+				 System.out.println("Student name: " + s.getName()+ " is registered\nCourseCode: " );
 				 for (Index index : s.getRegisteredIndex()) {
-					 System.out.println("Student name: " + s.getName()+ " is registered\nCourseCode: " + index.getCourseCode() + "\nIndexNum: " + index.getIndexNum());
+					 System.out.println(index.getCourseCode() + "\nIndexNum: " + index.getIndexNum());
 				 }
 			 }
 		 }	

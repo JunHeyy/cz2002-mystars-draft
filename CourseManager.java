@@ -59,6 +59,8 @@ public class CourseManager implements StarsManager{
    				 if(i.getIndexNum() == newIndex) {
    					 System.out.println("Vacancies available now: " + (i.getNumStudents()+ 1));
    					 i.setNumStudents(i.getNumStudents()+ 1);
+   					 UpdateDB(courseList);
+   					 break;
    				 }
    			 }
    		 }
@@ -73,6 +75,8 @@ public class CourseManager implements StarsManager{
 	   				 if(i.getIndexNum() == oldIndex) {
 	   					 System.out.println("Vacancies available now: " + (i.getNumStudents()- 1));
 	   					 i.setNumStudents(i.getNumStudents() - 1);
+	   					 UpdateDB(courseList);
+	   					 break;
 	   				 }
 	   			 }
 	   		 }
