@@ -28,7 +28,6 @@ public class StudentController {
 			}
 			
 			if(found == 0 ) {
-				System.out.println("Entering Found = 0");
 				//Add new course into Index
 				
 				for(Student s : studentList) {
@@ -52,11 +51,7 @@ public class StudentController {
 								}
 							}
 							
-						}
-									
-						
-						
-						
+						}						
 					}
 				}	
 			}
