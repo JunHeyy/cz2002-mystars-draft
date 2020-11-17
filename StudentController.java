@@ -23,7 +23,7 @@ public class StudentController {
 			ArrayList<Student> studentList = StudentManager.extractDB();
 			for(Student s : studentList) {
 				if(s.getMatricNum().equals(student.getMatricNum())) {
-					//TODO
+					
 					Index[] registeredIndex = s.getRegisteredIndex();
 					int lenRegisteredIndex = Array.getLength(registeredIndex);
 					Index[] newRegisteredIndex = new Index[lenRegisteredIndex+1];
@@ -57,6 +57,7 @@ public class StudentController {
 					Index[] registeredIndex = s.getRegisteredIndex();
 					int lenRegisteredIndex = Array.getLength(registeredIndex);
 					Index[] newRegisteredIndex = new Index[lenRegisteredIndex-1];
+					
 					int PosIndexToRemove =0;
 					for(int i =0;i<lenRegisteredIndex ;i++) {
 						if (registeredIndex[i].getCourseCode().equals(courseCode)) {
@@ -164,14 +165,33 @@ public class StudentController {
 			 }
 		 }	
 	}
-	public void swapIndex(Student student, Index ownIndex, Index peerIndex, Student peer, String peerpw) {
-		Index temp = ownIndex;
-		for (Index i : student.getRegisteredIndex()) {
-			if (i == ownIndex) ownIndex= peerIndex;
+	public void swapIndex(Student student, Index ownIndex, Index peerIndex, Student peer, String peerpw) throws ClassNotFoundException, IOException {
+		
+		//Assume peer pw is the verified.
+		ArrayList<Student> studentList = StudentManager.extractDB();
+		for(Student source: studentList) {
+			if(source.getMatricNum().equals(student.getMatricNum())) {
+				
+				for(Index i : source.getRegisteredIndex()) {
+					if(ownIndex.getCourseCode().equals(i.getCourseCode())) {
+						
+					}
+				}
+					
+					
+				break;
 			}
-		for (Index i : peer.getRegisteredIndex()) {
-			if (i == peerIndex) peerIndex = temp;
 		}
+		
+		for(Student target : studentList) {
+			if(target.getMatricNum().equals(peer.getMatricNum())) { //To change this part to use username instead.
+				System.out.println("Found target object");
+				break;
+			}
+		}
+		
+		
+
 		
 	}
 }
