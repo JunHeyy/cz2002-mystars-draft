@@ -74,18 +74,31 @@ public class Test {
         Index index52 = new Index(2, "CZ2005", 5, 4, lesson);
         indexCourse.add(index52);
         Index index53 = new Index(3, "CZ2005", 4, 2, lesson);
+        
         indexCourse.add(index53);
+        
+        ArrayList<Index> indexCourseOodp = new ArrayList<Index>();
+        Index index54 = new Index(8, "CZ2002", 4, 2, lesson);
+        indexCourseOodp.add(index54);
         //indexCourse[1] = new Index(2, "CZ2005", 5, 4, lesson);
         //indexCourse[2] = new Index(3, "CZ2005", 4, 2, lesson);
         
         // Coursecode, coursename, num AU, Index
         Course course2 = new Course("CZ2005", "Operating Systems", 3, indexCourse);
+       
         CourseManager.removeCourse("CZ2005");
         CourseManager.addCourse(course2);
+        
+        Course course3= new Course("CZ2002", "Oodp", 3, indexCourseOodp);
+        CourseManager.removeCourse("CZ2002");
+        CourseManager.addCourse(course3);
+        
+        StaffController.printAllCourses();
+        
         //Student(String username, String password, String name, String matricNum, char gender, String nationality,  int yearOfStudy, Index[] registeredIndex, LocalTime startAccessTime,
         		//LocalTime endAccessTime)
         
-        Index newIndexTest = new Index(1,"CZ2005", 4,4 ,lesson);
+        Index newIndexTest = new Index(8,"CZ2002", 4,4 ,lesson);
         Student s1 = new Student("dan_user", "pw123", "dan", "U192456", 'M', "SG", 4, indexStudent, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
         StudentManager.removeUser("dan_user");
         StudentManager.addStudent(s1);
@@ -96,7 +109,7 @@ public class Test {
        // sc.removeCourse(s1, "CZ2005");
         sc.checkVacancies(1);
         sc.printCourseRegistered(s1);
-        StaffController.printAllCourses();
+        
         
        // sc.checkVacancies(1);
 
