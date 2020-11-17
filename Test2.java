@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import javax.sound.midi.SysexMessage;
 
 public class Test2 {
-
-	
 	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, IOException {
 		//ArrayList<Index> s1Index = new ArrayList<Index>();
 		//Student s1 = new Student("dan_user", "pw123", "dan", "U192456", 'M', "SG", 4, s1Index, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
