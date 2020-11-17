@@ -20,12 +20,14 @@ public class Test2 {
         //SC.addCourse(s1, 1);
 		//StudentController.removeCourseByMatricsNum("U192456", "CZ2002");
 		//StudentController.removeCourseByMatricsNum("U192456", "CZ2005");
-		StudentController.printCourseRegisteredbyMatrics("U192456");
+		//StudentController.printCourseRegisteredbyMatrics("U192456");
 		
-		//ArrayList<Index> s2Index = new ArrayList<Index>();
-		//Student s2 = new Student("nic_user", "pw123", "nic", "U199999", 'M', "SG", 4, s2Index, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
-       // StaffController.addStudent(s2);
-        StudentController.addCourse("U199999", 4);
+		ArrayList<Index> s2Index = new ArrayList<Index>();
+		Student s2 = new Student("nic_user", "pw123", "nic", "U199999", 'M', "SG", 4, s2Index, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
+        StaffController.addStudent(s2);
+        //StudentController.removeCourseByMatricsNum("U199999", "CZ2005");
+        StudentController.addCourse("U199999", 1);
+        StudentController.printCourseRegisteredbyMatrics("U199999");
         //StudentController.printCourseRegisteredbyMatrics("U199999");
         //StudentController.changeIndexByMatric("U192456", 5, 4, "CZ2002");
        // StudentController.removeCourseByMatricsNum("U199999", "CZ2002");

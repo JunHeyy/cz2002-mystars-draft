@@ -3,7 +3,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import java.lang.reflect.Array;  
-import java.util.Arrays;  
+import java.util.Arrays;
+import java.util.ConcurrentModificationException;  
 
 public class StudentController {
 	
@@ -31,7 +32,7 @@ public class StudentController {
 				//Add new course into Index
 				
 				for(Student s : studentList) {
-					if(matricNum.equals(matricNum)) {
+					if(s.getMatricNum().equals(matricNum)) {
 						ArrayList<Course> courseList = CourseManager.extractDB();
 						for(Course c : courseList) {
 							ArrayList<Index> indexList = c.getIndexList();
@@ -45,7 +46,7 @@ public class StudentController {
 										registeredIndex.add(i2);
 										CourseManager.slotTaken(i2.getIndexNum(), i2.getCourseCode());
 										StudentManager.UpdateStudentDB(studentList);
-										System.out.println("Succesfully added  index: " + newIndex);
+										System.out.println("Succesfully added  index: " + i2.getIndexNum());
 										break;
 									}
 								}
@@ -117,7 +118,7 @@ public class StudentController {
 
 	}
 	
-	public static void removeCourseByMatricsNum ( String matricsNum, String courseCode) throws ClassNotFoundException, IOException {
+	public static void removeCourseByMatricsNum ( String matricsNum, String courseCode) throws ClassNotFoundException, IOException, ConcurrentModificationException {
 		
 		ArrayList<Student> studentList = StudentManager.extractDB();
 		
