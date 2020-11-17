@@ -2,6 +2,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import java.lang.reflect.Array;  
+import java.util.Arrays;  
+
 public class StudentController {
 	
 	Student student;
@@ -14,31 +17,70 @@ public class StudentController {
 				System.out.println("Index is already registered with this student");
 				found=1;
 			}
-			else {
-				//Add new course into Index
-				ArrayList<Student> studentList = StudentManager.extractDB();
-				for(Student s : studentList) {
-					if(s.getMatricNum().equals(student.getMatricNum())) {
-						//TODO
+		}
+		if(found==0) {
+			//Add new course into Index
+			ArrayList<Student> studentList = StudentManager.extractDB();
+			for(Student s : studentList) {
+				if(s.getMatricNum().equals(student.getMatricNum())) {
+					//TODO
+					Index[] registeredIndex = s.getRegisteredIndex();
+					int lenRegisteredIndex = Array.getLength(registeredIndex);
+					Index[] newRegisteredIndex = new Index[lenRegisteredIndex+1];
+					for(int i=0 ;i<lenRegisteredIndex;i++) {
+						newRegisteredIndex[i] = registeredIndex[i];
 					}
+					newRegisteredIndex[lenRegisteredIndex] = newIndex;
+					s.setRegisteredIndex(newRegisteredIndex);
+					
+					StudentManager.UpdateStudentDB(studentList);
+					
 				}
-				
-
-
-			}
+			}	
 		}
 	}
 	public static void removeCourse( Student student, String courseCode) throws ClassNotFoundException, IOException {
 		//TODO
-		ArrayList<Student> studentList = StudentManager.extractDB();
-		for(Student s : studentList) {
-			if(s.getMatricNum().equals(student.getMatricNum())) {
-				Index[] registeredIndex = s.getRegisteredIndex();
-				for(Index i : registeredIndex){
-					//TODO remove index from registeredIndex array then update the db.
-				
+		int found=0;
+		for(Index i: student.getRegisteredIndex()) {
+			if(i.getCourseCode().equals(courseCode)) {
+				System.out.println("Index is already registered with this student");
+				found=1;
+				break;
+			}
+		}
+		
+		if(found==1) {
+			ArrayList<Student> studentList = StudentManager.extractDB();
+			for(Student s : studentList) {
+				if(s.getMatricNum().equals(student.getMatricNum())) {
+					Index[] registeredIndex = s.getRegisteredIndex();
+					int lenRegisteredIndex = Array.getLength(registeredIndex);
+					Index[] newRegisteredIndex = new Index[lenRegisteredIndex-1];
+					int PosIndexToRemove =0;
+					for(int i =0;i<lenRegisteredIndex ;i++) {
+						if (registeredIndex[i].getCourseCode().equals(courseCode)) {
+							PosIndexToRemove = i;
+							break;
+						}
+					}
+					
+					int x=0;
+					for(int i=0; i<lenRegisteredIndex-1;i++) {
+						if(i != PosIndexToRemove) {
+							newRegisteredIndex[x] = registeredIndex[i];
+							x++;
+						}
+					}
+					
+					
+					s.setRegisteredIndex(newRegisteredIndex);
+					StudentManager.UpdateStudentDB(studentList);
+					System.out.printf("Course code: %s has been removed from Student name: %s Matrics Num: %s \n", courseCode,s.getName(),s.getMatricNum());
+					break;
 				}
 			}
+			
 		}
 
 	}
@@ -103,6 +145,18 @@ public class StudentController {
 		 ArrayList<Student> studentList = StudentManager.extractDB();
 		 for(Student s: studentList) {
 			 if(s.getMatricNum().equals(student.getMatricNum())) {
+				 System.out.println("Student name: " + s.getName()+ " is registered\nCourseCode: " );
+				 for (Index index : s.getRegisteredIndex()) {
+					 System.out.println(index.getCourseCode() + "\nIndexNum: " + index.getIndexNum());
+				 }
+			 }
+		 }	
+	}
+	
+	public static void printCourseRegisteredbyMatrics(String matricsNum) throws ClassNotFoundException, IOException { //tested
+		 ArrayList<Student> studentList = StudentManager.extractDB();
+		 for(Student s: studentList) {
+			 if(s.getMatricNum().equals(matricsNum)) {
 				 System.out.println("Student name: " + s.getName()+ " is registered\nCourseCode: " );
 				 for (Index index : s.getRegisteredIndex()) {
 					 System.out.println(index.getCourseCode() + "\nIndexNum: " + index.getIndexNum());

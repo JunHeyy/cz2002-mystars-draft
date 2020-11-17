@@ -66,15 +66,20 @@ public class Test {
         //Student(String username, String password, String name, String matricNum, char gender, String nationality,  int yearOfStudy, Index[] registeredIndex, LocalTime startAccessTime,
         		//LocalTime endAccessTime)
         
+        Index newIndexTest = new Index(6,"2002", 4,4 ,lesson);
         Student s1 = new Student("dan_user", "pw123", "dan", "U192456", 'M', "SG", 4, index1, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
-        StudentController sc = new StudentController();
-        sc.checkVacancies(1);
         StudentManager.removeUser("dan_user");
         StudentManager.addStudent(s1);
+        StudentController sc = new StudentController();
+        sc.printCourseRegisteredbyMatrics("U192456");
+        sc.removeCourse(s1,"CZ2007");
+        sc.printCourseRegisteredbyMatrics("U192456");
+       // sc.checkVacancies(1);
+
        // StudentController.printCourseRegistered(s1);
        // sc.checkVacancies(1);
         // new index, old index
-        StudentController.changeIndex(s1, 3, "CZ2005", 1);
+       // StudentController.changeIndex(s1, 3, "CZ2005", 1);
        // StudentController.printCourseRegistered(s1);
         //sc.checkVacancies(1);
         
