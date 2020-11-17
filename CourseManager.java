@@ -51,7 +51,7 @@ public class CourseManager implements StarsManager{
         
     }
     
-    public static void slotTaken(int newIndex,String CourseCode) throws IOException, ClassNotFoundException{
+    public static void slotTaken(int newIndex, String CourseCode) throws IOException, ClassNotFoundException{
    	 ArrayList<Course> courseList = extractDB();
    	 for(Course c: courseList) {
    		 if(c.getCourseCode().equals(CourseCode)) {

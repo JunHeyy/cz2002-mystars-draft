@@ -1,13 +1,14 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Course implements Serializable  {
 
     private String courseCode;
     private String courseName;
     private int numAUs;
-    private Index[] indexList;
+    private ArrayList<Index> indexList;
     
-    public Course(String courseCode, String courseName, int numAUs, Index[] indexList) {
+    public Course(String courseCode, String courseName, int numAUs, ArrayList<Index> indexList) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.numAUs = numAUs;
@@ -38,11 +39,11 @@ public class Course implements Serializable  {
         this.numAUs = numAUs;
     }
 
-    public Index[] getIndexList() {
+    public ArrayList<Index> getIndexList() {
         return this.indexList;
     }
 
-    public void setIndexList(Index[] indexList) {
+    public void setIndexList(ArrayList<Index> indexList) {
         this.indexList = indexList;
     }
     public int getVacancies() {

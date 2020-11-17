@@ -1,13 +1,14 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Lesson implements Serializable {
 
     private String type;
     private String venue;
     private String groupId;
-    private Timeslot[] timeslots;
+    private ArrayList<Timeslot> timeslots;
 
-    public Lesson(String type, String venue, String groupId, Timeslot[] timeslots) {
+    public Lesson(String type, String venue, String groupId, ArrayList<Timeslot> timeslots) {
         this.type = type;
         this.venue = venue;
         this.groupId = groupId;
@@ -38,11 +39,11 @@ public class Lesson implements Serializable {
         this.groupId = groupId;
     }
 
-    public Timeslot[] getTimeslots() {
+    public ArrayList<Timeslot> getTimeslots() {
         return this.timeslots;
     }
 
-    public void setTimeslots(Timeslot[] timeslots) {
+    public void setTimeslots(ArrayList<Timeslot> timeslots) {
         this.timeslots = timeslots;
     }
     public String toString() {

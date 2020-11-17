@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Index implements Serializable{
     
@@ -6,11 +7,11 @@ public class Index implements Serializable{
     private String courseCode;
     private int maxSize;
     private int numStudents;
-    private Lesson[] lessons;
+    private ArrayList<Lesson> lessons;
 
 
 
-    public Index(int indexNum, String courseCode, int maxSize, int numStudents, Lesson[] lessons) {
+    public Index(int indexNum, String courseCode, int maxSize, int numStudents, ArrayList<Lesson> lessons) {
         this.indexNum = indexNum;
         this.courseCode = courseCode;
         this.maxSize = maxSize;
@@ -51,11 +52,11 @@ public class Index implements Serializable{
         this.numStudents = numStudents;
     }
 
-    public Lesson[] getLessons() {
+    public ArrayList<Lesson> getLessons() {
         return this.lessons;
     }
 
-    public void setLessons(Lesson[] lessons) {
+    public void setLessons(ArrayList<Lesson> lessons) {
         this.lessons = lessons;
     }
     

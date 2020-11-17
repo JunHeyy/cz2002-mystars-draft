@@ -63,7 +63,7 @@ public class StaffController{
 		try {
 	        ArrayList<Student> studentList = StudentManager.extractDB();
 	        for (Student s: studentList) { 
-	        	Index[] registeredIndex;
+	        	ArrayList<Index> registeredIndex;
 	        	//Get the indexArray the student object register
 	        	registeredIndex = s.getRegisteredIndex();
 	        	if(registeredIndex ==null) System.out.println("There are no students registered");
@@ -88,7 +88,7 @@ public class StaffController{
 	        ArrayList<Student> studentList = StudentManager.extractDB();
 	        
 	        for (Student s: studentList) { 
-	        	Index[] registeredIndex;
+	        	ArrayList<Index> registeredIndex;
 	        	registeredIndex = s.getRegisteredIndex();
 	        	for(Index index : registeredIndex) {
 	        		if(index.getCourseCode().equals(courseCode)) {
@@ -105,10 +105,10 @@ public class StaffController{
 		}
 	}
 	
-	public void printAllCourses() {
+	public static void printAllCourses() {
 		try {
 	        ArrayList<Course> courseList = CourseManager.extractDB();
-	        System.out.println("These are the following Courses registered");
+	        System.out.println("These are the following Courses registered in the course database");
 	        for (Course c: courseList) { 
 	        	System.out.println(c.getCourseName());
 

@@ -1,4 +1,5 @@
 import java.time.*;
+import java.util.ArrayList;
 
 public class Student extends User {
 
@@ -7,14 +8,14 @@ public class Student extends User {
     private char gender;
     private String nationality;
     private int yearOfStudy;
-    private Index[] registeredIndex;
+    private ArrayList<Index> registeredIndex;
     private LocalTime startAccessTime;
     private LocalTime endAccessTime;
     private static final long serialVersionUID = 10;
 
     public Student(String username, String password, String name, 
     		String matricNum, char gender, String nationality, 
-    		int yearOfStudy, Index[] registeredIndex, LocalTime startAccessTime,
+    		int yearOfStudy, ArrayList<Index> registeredIndex, LocalTime startAccessTime,
     		LocalTime endAccessTime) {
         super(username, password, "Student");
         this.name = name;
@@ -47,16 +48,16 @@ public class Student extends User {
         return this.yearOfStudy;
     }
 
-    public Index[] getRegisteredIndex() {
+    public ArrayList<Index> getRegisteredIndex() {
         return this.registeredIndex;
     }
     
-    public void setRegisteredIndex(Index[] index) {
+    public void setRegisteredIndex(ArrayList<Index> index) {
     	this.registeredIndex = index;
     }
     
     public void addRegisteredIndex(Index index) {
-    	Index[] currentRegisteredIndex = this.registeredIndex;
+    	ArrayList<Index> currentRegisteredIndex = this.registeredIndex;
     	
     	
     	

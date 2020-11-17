@@ -12,32 +12,29 @@ public class StudentController {
 	int indexNum;
 	public void addCourse(Student student, Index newIndex) throws ClassNotFoundException, IOException,FileNotFoundException {
 		int found=0;
-		for(Index i: student.getRegisteredIndex()) {
-			if(newIndex == i) {
-				System.out.println("Index is already registered with this student");
-				found=1;
-			}
-		}
-		if(found==0) {
-			//Add new course into Index
-			ArrayList<Student> studentList = StudentManager.extractDB();
-			for(Student s : studentList) {
-				if(s.getMatricNum().equals(student.getMatricNum())) {
-					
-					Index[] registeredIndex = s.getRegisteredIndex();
-					int lenRegisteredIndex = Array.getLength(registeredIndex);
-					Index[] newRegisteredIndex = new Index[lenRegisteredIndex+1];
-					for(int i=0 ;i<lenRegisteredIndex;i++) {
-						newRegisteredIndex[i] = registeredIndex[i];
-					}
-					newRegisteredIndex[lenRegisteredIndex] = newIndex;
-					s.setRegisteredIndex(newRegisteredIndex);
-					
-					StudentManager.UpdateStudentDB(studentList);
-					
+		if(checkVacanciesForIndex(newIndex.getIndexNum())>0) {
+			for(Index i: student.getRegisteredIndex()) {
+				if(newIndex == i) {
+					System.out.println("Index is already registered with this student");
+					found=1;
 				}
-			}	
-		}
+			}
+			if(found==0) {
+				//Add new course into Index
+				ArrayList<Student> studentList = StudentManager.extractDB();
+				for(Student s : studentList) {
+					if(s.getMatricNum().equals(student.getMatricNum())) {
+						
+						ArrayList<Index> registeredIndex = s.getRegisteredIndex();
+						registeredIndex.add(newIndex);
+						CourseManager.slotTaken(newIndex.getIndexNum(), newIndex.getCourseCode());
+						
+						StudentManager.UpdateStudentDB(studentList);
+						
+					}
+				}	
+			}
+		}else {System.out.println("The slot that you want to add has full vacancies");}
 	}
 	public static void removeCourse( Student student, String courseCode) throws ClassNotFoundException, IOException {
 		//TODO
@@ -54,29 +51,23 @@ public class StudentController {
 			ArrayList<Student> studentList = StudentManager.extractDB();
 			for(Student s : studentList) {
 				if(s.getMatricNum().equals(student.getMatricNum())) {
-					Index[] registeredIndex = s.getRegisteredIndex();
-					int lenRegisteredIndex = Array.getLength(registeredIndex);
-					Index[] newRegisteredIndex = new Index[lenRegisteredIndex-1];
 					
-					int PosIndexToRemove =0;
-					for(int i =0;i<lenRegisteredIndex ;i++) {
-						if (registeredIndex[i].getCourseCode().equals(courseCode)) {
-							PosIndexToRemove = i;
+					for(Index i : s.getRegisteredIndex()) {
+						if(i.getCourseCode().equals(courseCode)) {
+							ArrayList<Index> registeredIndex = s.getRegisteredIndex();
+							System.out.println("Removing the requested index...");
+							registeredIndex.remove(i);
+							CourseManager.slotGivenBack(i.getIndexNum(), i.getCourseCode());
+							StudentManager.UpdateStudentDB(studentList);
 							break;
 						}
 					}
 					
-					int x=0;
-					for(int i=0; i<lenRegisteredIndex-1;i++) {
-						if(i != PosIndexToRemove) {
-							newRegisteredIndex[x] = registeredIndex[i];
-							x++;
-						}
-					}
+
 					
 					
-					s.setRegisteredIndex(newRegisteredIndex);
-					StudentManager.UpdateStudentDB(studentList);
+					//s.setRegisteredIndex(newRegisteredIndex);
+					
 					System.out.printf("Course code: %s has been removed from Student name: %s Matrics Num: %s \n", courseCode,s.getName(),s.getMatricNum());
 					break;
 				}
@@ -91,7 +82,7 @@ public class StudentController {
 	public void checkVacancies(int indexNum) throws ClassNotFoundException, IOException {
 		ArrayList<Course> courseList = CourseManager.extractDB();
 		for (Course c : courseList) {
-			Index[] indexList = c.getIndexList();
+			ArrayList<Index> indexList = c.getIndexList();
 			for(Index i :indexList) {
 				if(i.getIndexNum() == indexNum) {
 					int vacancies = i.getMaxSize() - i.getNumStudents();
@@ -106,7 +97,7 @@ public class StudentController {
         ArrayList<Course> courseList = CourseManager.extractDB();
         int vacancies;
         for (Course c : courseList) {
-            Index[] indexList = c.getIndexList();
+        	ArrayList<Index> indexList = c.getIndexList();
             for(Index i :indexList) {
                 if(i.getIndexNum() == indexNum) {
                     vacancies = i.getMaxSize() - i.getNumStudents();
