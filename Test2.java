@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -8,55 +9,30 @@ import javax.sound.midi.SysexMessage;
 public class Test2 {
 
 	
-	public static void main(String[] args) {
-		System.out.println("Time");
-        int [] weeks = new int[3];
-        weeks[0] = 1;
-        weeks[1] = 2;
-        weeks[2] = 3;
-        Timeslot [] time = new Timeslot[2];
-        time[0] = new Timeslot(DayOfWeek.of(5), LocalTime.of(10,43,12), LocalTime.of(12,43,12), weeks);
-        time[1] = new Timeslot(DayOfWeek.of(6), LocalTime.of(10,43,12), LocalTime.of(12,43,12), weeks);
-
-        Lesson [] lesson = new Lesson[2];
-        lesson[0] = new Lesson("abc", "Jurong", "SSP3", time);
-        lesson[1] = new Lesson("abc", "Jurong", "SSP3", time);
-
-        Index [] index = new Index[2];
+	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, IOException {
+		//ArrayList<Index> s1Index = new ArrayList<Index>();
+		//Student s1 = new Student("dan_user", "pw123", "dan", "U192456", 'M', "SG", 4, s1Index, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
+       // StaffController.addStudent(s1);
+		
+		StudentController SC = new StudentController();
         
-        index[0] = new Index(1, "abcd", 2, 3, lesson);
-        index[1] = new Index(2, "cdef", 3, 4, lesson);
-        
-        Index index2 = new Index(1, "abcd", 2, 3, lesson);
-        
-       
-
-        Course course1 = new Course("abc", "cde", 3, index);
-        User user = new User("jj", "asd", "Staff");
-        Staff staff = new Staff("jj", "asd", 1234);
-        Student student = new Student("student3", "zxc", "Nic", 
-        		"U19223", 'm', "Singaporean", 
-        		3, index, LocalTime.of(10,43,12),
-        		LocalTime.of(12,43,12));
-      
-        		
-        		/*try {
-			IndexManager.addIndex(index2);
-			
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Error");
-			e.printStackTrace();
-		}*/
-        
-        try {
-			StudentManager.addStudent(student);
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        StaffController.printStudentByCourse("cdef");
+		//StudentController.addCourse("U192456", 2);
+        //SC.addCourse(s1, 1);
+		//StudentController.removeCourseByMatricsNum("U192456", "CZ2002");
+		//StudentController.removeCourseByMatricsNum("U192456", "CZ2005");
+		StudentController.printCourseRegisteredbyMatrics("U192456");
+		
+		//ArrayList<Index> s2Index = new ArrayList<Index>();
+		//Student s2 = new Student("nic_user", "pw123", "nic", "U199999", 'M', "SG", 4, s2Index, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
+       // StaffController.addStudent(s2);
+        StudentController.addCourse("U199999", 4);
+        //StudentController.printCourseRegisteredbyMatrics("U199999");
+        //StudentController.changeIndexByMatric("U192456", 5, 4, "CZ2002");
+       // StudentController.removeCourseByMatricsNum("U199999", "CZ2002");
+        //StudentController.swapIndex("U192456", 1, 4, "U199999", "123");
+       // StudentController.changeIndexByMatric("U199999", 4, 1, "CZ2005");;
+       // StudentController.printCourseRegisteredbyMatrics("U199999");
+        //StudentController.printCourseRegisteredbyMatrics("U199999");
         
 	}
 }

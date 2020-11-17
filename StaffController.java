@@ -26,7 +26,7 @@ public class StaffController{
 		}
 	}
 	
-	public void addStudent(Student student) {
+	public static void addStudent(Student student) {
 		try {
 			StudentManager.addStudent(student);
 		} catch (ClassNotFoundException | IOException e) {

@@ -19,6 +19,8 @@ public class Index implements Serializable{
         this.lessons = lessons;
 
     }
+    
+    public Index() {}
 
     public int getIndexNum() {
         return this.indexNum;

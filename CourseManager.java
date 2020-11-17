@@ -46,7 +46,7 @@ public class CourseManager implements StarsManager{
         	IOController.writeFile(filename, courseList);
         }
         else {
-        	System.out.println("There is no such index in the database");
+        	System.out.println("There is no such Course in the database");
         }
         
     }

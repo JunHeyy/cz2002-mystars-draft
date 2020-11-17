@@ -68,9 +68,9 @@ public class PopulateCourseNindex {
 		
 		
 		ArrayList <Index>CZ2005Index = new ArrayList<Index>();
-		Index CZ2005Index1a = new Index (1, "CZ2005", 20, 0, CZ2005lesson1);
-		Index CZ2005Index1b = new Index (2, "CZ2005", 20, 0, CZ2005lesson2);
-		Index CZ2005Index1c = new Index (3, "CZ2005", 20, 0, CZ2005lesson3);
+		Index CZ2005Index1a = new Index (4, "CZ2005", 20, 0, CZ2005lesson1);
+		Index CZ2005Index1b = new Index (5, "CZ2005", 20, 0, CZ2005lesson2);
+		Index CZ2005Index1c = new Index (6, "CZ2005", 20, 0, CZ2005lesson3);
 		CZ2005Index.add(CZ2005Index1a);
 		CZ2005Index.add(CZ2005Index1b);
 		CZ2005Index.add(CZ2005Index1c);
@@ -106,14 +106,17 @@ public class PopulateCourseNindex {
 		
 		
 		ArrayList <Index>CZ2007Index = new ArrayList<Index>();
-		Index CZ2007Index1a = new Index (1, "CZ2007", 20, 0, CZ2007lesson1);
-		Index CZ2007Index1b = new Index (2, "CZ2007", 20, 0, CZ2007lesson2);
-		Index CZ2007Index1c = new Index (3, "CZ2007", 20, 0, CZ2007lesson3);
+		Index CZ2007Index1a = new Index (7, "CZ2007", 20, 0, CZ2007lesson1);
+		Index CZ2007Index1b = new Index (8, "CZ2007", 20, 0, CZ2007lesson2);
+		Index CZ2007Index1c = new Index (9, "CZ2007", 20, 0, CZ2007lesson3);
 		CZ2007Index.add(CZ2007Index1a);
 		CZ2007Index.add(CZ2007Index1b);
 		CZ2007Index.add(CZ2007Index1c);
 		
 		Course CZ2007 = new Course("CZ2007", "Database", 3, CZ2007Index);
+		//CourseManager.removeCourse("CZ2007");
+		//CourseManager.removeCourse("CZ2005");
+		//CourseManager.removeCourse("CZ2002");
 		CourseManager.addCourse(CZ2007);
 		CourseManager.addCourse(CZ2005);
 		CourseManager.addCourse(CZ2002);
