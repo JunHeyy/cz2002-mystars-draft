@@ -9,15 +9,17 @@ public class Lesson implements Serializable {
     private String venue;
     private String groupId;
 
-    private String day, startTime, endTime;
+    private String day, startTime, endTime, weeks;
+    
 
-    public Lesson(String type, String venue, String groupId, String day, String startTime, String endTime) {
+    public Lesson(String type, String venue, String groupId, String day, String startTime, String endTime, String weeks) {
         this.type = type;
         this.venue = venue;
         this.groupId = groupId;;
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.weeks = weeks;
     }
 
     public String getType() {
@@ -67,6 +69,19 @@ public class Lesson implements Serializable {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
+
+	public String getWeeks() {
+		return weeks;
+	}
+
+	public void setWeeks(String weeks) {
+		this.weeks = weeks;
+	}
+
+
+
+
+	
 
 
 

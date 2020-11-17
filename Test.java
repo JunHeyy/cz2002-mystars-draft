@@ -44,20 +44,18 @@ public class Test {
         Timeslot time2 = new Timeslot(DayOfWeek.of(6), LocalTime.of(10,43,12), LocalTime.of(12,43,12), weeks);
         time.add(time1);
         time.add(time2);
-        
-        //Lesson(String type, String venue, String groupId, String day, String startTime, String endTime)
-        
+
         ArrayList<Lesson> lesson = new ArrayList<Lesson>();
-        Lesson lesson1 = new Lesson("abc", "Lecture", "SSP3", "Monday", "08:30", "09:30");
-        Lesson lesson2 = new Lesson("abc", "Tutorial", "SSP3", "Tuesday", "09:30", "09:30");
-        lesson.add(lesson1); //CZ2002 Lesson
+        Lesson lesson1 = new Lesson("abc", "Jurong", "SSP3", time);
+        Lesson lesson2 = new Lesson("abc", "Jurong", "SSP3", time);
+        lesson.add(lesson1);
         lesson.add(lesson2);
         
        // Index [] index1 = new Index[3];
         //Index(int indexNum, String courseCode, int maxSize, int numStudents, Lesson[] lessons)
         ArrayList<Index> indexStudent = new ArrayList<Index>();
         
-        Index index1 = new Index(2, "CZ2005", 4, 4, lesson);
+        Index index1 = new Index(1, "CZ2005", 4, 4, lesson);
         indexStudent.add(index1);
         Index index2 = new Index(9, "CZ2006", 5, 4, lesson);
         indexStudent.add(index2);
@@ -71,7 +69,7 @@ public class Test {
         ArrayList<Index> indexCourse = new ArrayList<Index>();
         //Index(int indexNum, String courseCode, int maxSize, int numStudents, Lesson[] lessons)
         
-        Index index51 = new Index(1, "CZ2005", 4, 4, lesson);
+        Index index51 = new Index(1, "CZ2005", 4, 3, lesson);
         indexCourse.add(index51);
         Index index52 = new Index(2, "CZ2005", 5, 4, lesson);
         indexCourse.add(index52);
@@ -108,7 +106,6 @@ public class Test {
         sc.printCourseRegisteredbyMatrics("U192456");
         sc.checkVacancies(1);
         sc.addCourse(s1,newIndexTest);
-        sc.changeIndex(s1, 3, "CZ2005", 2);
        // sc.removeCourse(s1, "CZ2005");
         sc.checkVacancies(1);
         sc.printCourseRegistered(s1);
