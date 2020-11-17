@@ -8,14 +8,14 @@ public class Student extends User {
     private char gender;
     private String nationality;
     private int yearOfStudy;
-    private ArrayList<Index> registeredIndex;
+    private ArrayList<Integer> registeredIndex;
     private LocalTime startAccessTime;
     private LocalTime endAccessTime;
     private static final long serialVersionUID = 10;
 
     public Student(String username, String password, String name, 
     		String matricNum, char gender, String nationality, 
-    		int yearOfStudy, ArrayList<Index> registeredIndex, LocalTime startAccessTime,
+    		int yearOfStudy, ArrayList<Integer> registeredIndex, LocalTime startAccessTime,
     		LocalTime endAccessTime) {
         super(username, password, "Student");
         this.name = name;
@@ -48,19 +48,12 @@ public class Student extends User {
         return this.yearOfStudy;
     }
 
-    public ArrayList<Index> getRegisteredIndex() {
+    public ArrayList<Integer> getRegisteredIndex() {
         return this.registeredIndex;
     }
     
-    public void setRegisteredIndex(ArrayList<Index> index) {
+    public void setRegisteredIndex(ArrayList<Integer> index) {
     	this.registeredIndex = index;
-    }
-    
-    public void addRegisteredIndex(Index index) {
-    	ArrayList<Index> currentRegisteredIndex = this.registeredIndex;
-    	
-    	
-    	
     }
 
 
