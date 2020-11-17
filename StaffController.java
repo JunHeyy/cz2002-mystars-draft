@@ -42,7 +42,7 @@ public class StaffController{
     		String matricNum, char gender, String nationality, 
     		int yearOfStudy, LocalTime startAccessTime,
     		LocalTime endAccessTime) {
-		ArrayList<Index> registeredIndex = new ArrayList<Index>();
+		ArrayList<Integer> registeredIndex = new ArrayList<Integer>();
 		Student student = new Student ( username,  password,  name, matricNum,  gender,  nationality, 
 										yearOfStudy,  registeredIndex,  startAccessTime, endAccessTime);
 		try {
@@ -71,27 +71,61 @@ public class StaffController{
 		}
 	}
 	
-	public void updateCourse(String newCode, String newAUS, ArrayList<Index> newIndexlist) {
+	public static void updateCourse(String oldCode,String newCode, String newCourseName, int newAUS, ArrayList<Index> newIndexlist) {
 		//TODO
+		ArrayList<Course> courseList = CourseManager.extractDB();
+		for(Course c : courseList){
+			if(c.getCourseCode().equals(oldCode)) {
+				c.setCourseCode(newCode);
+				c.setNumAUs(newAUS);
+				c.setIndexList(newIndexlist);
+				c.setCourseName(newCourseName);
+				CourseManager.UpdateDB(courseList);
+			}
+		}
+		
 
 	}
 	
-	public void addIndex(String courseCode, Index newIndex) {
+	public static void addIndex(String courseCode, Index newIndex) {
 		//TODO
+		ArrayList<Course> courseList = CourseManager.extractDB();
+		int found =0;
+        for(Course c1 : courseList) {
+        	if(c1.getCourseCode().equals(courseCode)) {
+        		ArrayList<Index> indexList = c1.getIndexList();
+        		for(Index i : indexList) {
+        			if(i.getIndexNum() == newIndex.getIndexNum()){
+        				found=1;
+        				System.out.println("Index already exists in this course, unable to add the requested Index");
+        			}
+        		}
+        	}
+        }
+		if(found == 0) {
+			for(Course c : courseList){
+				if(c.getCourseCode().equals(courseCode)) {
+					ArrayList<Index> indexList = c.getIndexList();
+					indexList.add(newIndex);
+					CourseManager.UpdateDB(courseList);
+					
+				}
+			}
+		}
 	}
-	public static void printStudentByIndex(int IndexNum) { //tested
+	public static void printStudentByIndex(int IndexNum) { 
 		//Need to test!!
 		try {
 	        ArrayList<Student> studentList = StudentManager.extractDB();
 	        for (Student s: studentList) { 
-	        	ArrayList<Index> registeredIndex;
+	        	ArrayList<Integer> registeredIndex;
 	        	//Get the indexArray the student object register
 	        	registeredIndex = s.getRegisteredIndex();
 	        	if(registeredIndex == null) System.out.println("There are no students registered");
-	        	for(Index index : registeredIndex) {
-	        		if(index.getIndexNum() == IndexNum) {
+	        	for(Integer index : registeredIndex) {
+	        		if(index == IndexNum) {
 	        			System.out.println("Student " + s.getName() + " is registered in "+
-	        								index.getCourseCode() + " , and index number: " + index.getIndexNum() );
+	        					IndexToCourseCode(index) + " , and index number: " + index );
 	        			
 	        		}
 	        	}
@@ -104,17 +138,18 @@ public class StaffController{
 		}
 	}
 	
-	public static void printStudentByCourse(String courseCode) { //Tested
+	public static void printStudentByCourse(String courseCode) { 
 		try {
 	        ArrayList<Student> studentList = StudentManager.extractDB();
 	        
 	        for (Student s: studentList) { 
-	        	ArrayList<Index> registeredIndex= s.getRegisteredIndex();
+	        	ArrayList<Integer> registeredIndex= s.getRegisteredIndex();
 	        	
-	        	for(Index index : registeredIndex) {
-	        		if(index.getCourseCode().equals(courseCode)) {
+	        	for(int index : registeredIndex) {
+	        		String indexcourseCode = IndexToCourseCode(index);
+	        		if(indexcourseCode.equals(courseCode)) {
 	        			System.out.println("Student " + s.getName() + " is registered in "+
-	        								index.getCourseCode() + " and Index number: "  + index.getIndexNum());
+	        								indexcourseCode + " and Index number: "  + index);
 	        		}
 	        	}
 	        	
@@ -126,12 +161,30 @@ public class StaffController{
 		}
 	}
 	
-	public static void printAllCourses() { //Tested
+	private static String IndexToCourseCode(int IndexNum) {
+		
+		ArrayList<Course> courseList = CourseManager.extractDB();
+		for(Course c: courseList) {
+			for(Index i : c.getIndexList()) {
+				if(i.getIndexNum() == IndexNum) {
+					return i.getCourseCode();
+				}
+			}
+		}
+		return "CourseCode not found";
+		
+	}
+	public static void printAllCourses() { 
 		try {
 	        ArrayList<Course> courseList = CourseManager.extractDB();
 	        System.out.println("These are the following Courses registered in the course database");
 	        for (Course c: courseList) { 
 	        	System.out.println(c.getCourseName());
+	        	ArrayList<Index> indexList = c.getIndexList();
+	        	System.out.println("Indexes registered in this course: ");
+	        	for(Index i : indexList){
+	        		System.out.println(i.getIndexNum());
+	        	}
 
 	        	
 	        }

@@ -20,8 +20,8 @@ public class StudentController {
 		if(checkVacanciesForIndex(newIndex)>0) {
 			for(Student s : studentList) {
 				if(s.getMatricNum().equals(matricNum)) {
-					for(Index i: s.getRegisteredIndex()) {
-						if(newIndex == i.getIndexNum()) {
+					for(Integer i: s.getRegisteredIndex()) {
+						if(newIndex == i) {
 							System.out.println("Index is already registered with this student");
 							found=1;	
 						}				
@@ -43,8 +43,8 @@ public class StudentController {
 									System.out.println("Course code is " + courseCode);
 									if(checkCourseRegistered(matricNum, courseCode)) {
 										System.out.println("Registering Course");
-										ArrayList<Index> registeredIndex = s.getRegisteredIndex();
-										registeredIndex.add(i2);
+										ArrayList<Integer> registeredIndex = s.getRegisteredIndex();
+										registeredIndex.add(newIndex);
 										CourseManager.slotTaken(i2.getIndexNum(), i2.getCourseCode());
 										StudentManager.UpdateStudentDB(studentList);
 										System.out.println("Succesfully added  index: " + i2.getIndexNum());
@@ -66,19 +66,20 @@ public class StudentController {
 		ArrayList<Student> studentList = StudentManager.extractDB();
 		
 		boolean removed = false;
-		
+		int toDelete = -1;
 		for(Student s : studentList) {
 			if(s.getMatricNum().equals(matricsNum)) {
-				ArrayList<Index> registeredIndex = s.getRegisteredIndex();
-				for(Index i : registeredIndex) {
-					if(i.getCourseCode().equals(courseCode)) {
-						registeredIndex.remove(i);
-						CourseManager.slotGivenBack(i.getIndexNum(), i.getCourseCode());
+				ArrayList<Integer> registeredIndex = s.getRegisteredIndex();
+				for(int i : registeredIndex) {
+					if(IndexToCourseCode(i).equals(courseCode)) {
+						toDelete = i;
+						CourseManager.slotGivenBack(i, IndexToCourseCode(i));
 						StudentManager.UpdateStudentDB(studentList);
 						System.out.println("Course " + courseCode +" has been successfully removed");
 						removed = true;
 					}
-				}	
+				}
+				if (toDelete != -1) registeredIndex.remove(toDelete);
 			}
 		}
 		if (!removed) System.out.println("Course is not registered!");
@@ -90,39 +91,55 @@ public class StudentController {
 			 for(Student s: studentList) {
 				 if(s.getMatricNum().equals(matricsNum)) {
 					 System.out.println("Student name: " + s.getName()+ " is registered\nCourseCode: " );
-					 for (Index index : s.getRegisteredIndex()) {
-						 System.out.println(index.getCourseCode() + "\nIndexNum: " + index.getIndexNum());
+					 for (Integer index : s.getRegisteredIndex()) {
+						 System.out.println(IndexToCourseCode(index) + "\nIndexNum: " + index);
 					 }
 				 }
 			 }	
 		}
 		
 	//tested
-	public static void changeIndex(String MatricNum, int newIndex, int oldIndex, String Coursecode) throws ClassNotFoundException, IOException { //tested
-        ArrayList<Student> studentList = StudentManager.extractDB();
-        for(Student s : studentList) {
-            if(s.getMatricNum().equals(MatricNum)) {
-                 for (Index index : s.getRegisteredIndex()) {
-                     if(index.getIndexNum() == oldIndex && index.getCourseCode().equals(Coursecode)) {
-                            if (checkVacanciesForIndex(newIndex)>0) {
-                            	System.out.println("Changing Index...");
-                            	System.out.println("Successful! Changed index from "+ index.getIndexNum() + " to "+ newIndex);
-                            	index.setIndexNum(newIndex);
-                            	StudentManager.UpdateStudentDB(studentList);
-                                CourseManager.slotTaken(newIndex,Coursecode);
-                                CourseManager.slotGivenBack(oldIndex,Coursecode);
-                           
-                             }
-                            else { 
-                            	System.out.println("There is no vacancy for this index"); 
-                            	break;
-                            	}
-                         }
-                         else System.out.println("Index is the same");
-                     }
-                 }
-            }
-        }
+		public static void changeIndex(String MatricNum, int newIndex, int oldIndex, String Coursecode) throws ClassNotFoundException, IOException, ConcurrentModificationException { //tested
+			Integer toDelete  = -1;
+	        ArrayList<Student> studentList = StudentManager.extractDB();
+	        for(Student s : studentList) {
+	        	ArrayList<Integer> indexList = s.getRegisteredIndex();
+	            if(s.getMatricNum().equals(MatricNum)) {
+	                 for (int index : s.getRegisteredIndex()) {
+	                     if(index == oldIndex && IndexToCourseCode(index).equals(Coursecode)) {
+	                    	 	
+	                        	
+	                            if (checkVacanciesForIndex(newIndex)>0) {
+	                            	System.out.println("Changing Index...");
+	                            	System.out.println("Successful! Changed index from "+ index + " to "+ newIndex); 	
+	                            	for(Integer i : indexList) {
+	                            		if (i == oldIndex) {
+	                            			toDelete = i;
+	                            			System.out.println("To delete is "+ toDelete);
+	                            			break;
+	                            		}
+	                            	}
+	                            	oldIndex = newIndex;
+	                                CourseManager.slotTaken(newIndex,Coursecode);
+	                                CourseManager.slotGivenBack(oldIndex,Coursecode);
+	                           
+	                             }
+	                            else { 
+	                            	System.out.println("There is no vacancy for this index"); 
+	                            	break;
+	                            }
+	                         }
+	                         else System.out.println("Index is the same");
+	                     }
+	                 
+
+	                 }
+	        	indexList.remove(toDelete);
+		     	indexList.add(newIndex);
+	        	StudentManager.UpdateStudentDB(studentList);
+	            }
+		     
+	        }
     
 	
 	public static void swapIndex(String ownMatricNum, int OwnIndex, int PeerIndex, String peerMatricNum, String peerpw) throws ClassNotFoundException, IOException {
@@ -134,12 +151,12 @@ public class StudentController {
 		for(Student s: studentList) {
 			for (Student p : studentList) {
 				if(s.getMatricNum().equals(ownMatricNum) && p.getMatricNum().equals(peerMatricNum)) {
-					for (Index own : s.getRegisteredIndex()) {
-						for (Index peer : p.getRegisteredIndex()) {
-							if (own.getIndexNum() == OwnIndex && peer.getIndexNum() == PeerIndex) {
-								if (own.getCourseCode().equals(peer.getCourseCode())) {	
-								own.setIndexNum(PeerIndex);
-								peer.setIndexNum(temp);
+					for (Integer own : s.getRegisteredIndex()) {
+						for (Integer peer : p.getRegisteredIndex()) {
+							if (own == OwnIndex && peer == PeerIndex) {
+								if (IndexToCourseCode(own).equals(IndexToCourseCode(peer))) {	
+								own = PeerIndex;
+								peer= temp;
 								System.out.println("Index swapped");
 								StudentManager.UpdateStudentDB(studentList);
 								}
@@ -170,8 +187,8 @@ public class StudentController {
 		ArrayList <Student> studentList = StudentManager.extractDB();
 		for(Student s : studentList){
 			if(s.getMatricNum().equals(matricNum)) {
-				for(Index i : s.getRegisteredIndex()) {
-					if(i.getCourseCode().equals(courseCode)){
+				for(Integer i : s.getRegisteredIndex()) {
+					if(IndexToCourseCode(i).equals(courseCode)){
 						System.out.println("Coursecode already registered");
 						return false;
 					}
@@ -194,4 +211,16 @@ public class StudentController {
 		}
 	}
 	
+	private static String IndexToCourseCode(int IndexNum) {
+		
+		ArrayList<Course> courseList = CourseManager.extractDB();
+		for(Course c: courseList) {
+			for(Index i : c.getIndexList()) {
+				if(i.getIndexNum() == IndexNum) {
+					return i.getCourseCode();
+				}
+			}
+		}
+		return "CourseCode not found";
+	}
 }

@@ -56,7 +56,6 @@ public class Student extends User {
     	this.registeredIndex = index;
     }
 
-
     public LocalTime getStartAccessTime() {
         return this.startAccessTime;
     }

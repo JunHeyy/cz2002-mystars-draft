@@ -11,10 +11,10 @@ public class StudentManager {
 	    	studentList = IOController.readFile(filename);
 	        int found=0;
 	        for (Student s: studentList) {
-	            if (s.getUsername().equals(student.getUsername())) {
+	            if (s.getUsername().equals(student.getUsername())|| s.getMatricNum().equals(student.getMatricNum())) {
 	                System.out.println("This student already exist in the database, unable to add student");
 	                found =1;
-	                break;
+	                break; 
 	            }
 	        }
 	        if (found==0) {
