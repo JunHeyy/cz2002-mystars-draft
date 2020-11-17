@@ -121,18 +121,26 @@ public class StudentController {
 	public static void removeCourseByMatricsNum ( String matricsNum, String courseCode) throws ClassNotFoundException, IOException, ConcurrentModificationException {
 		
 		ArrayList<Student> studentList = StudentManager.extractDB();
-		
+		ArrayList<Index> registeredIndex = new ArrayList<Index>();
+		Index toDelete = null;
 		for(Student s : studentList) {
 			if(s.getMatricNum().equals(matricsNum)) {
-				ArrayList<Index> registeredIndex = s.getRegisteredIndex();
+				registeredIndex = s.getRegisteredIndex();
 				for(Index i : registeredIndex) {
 					if(i.getCourseCode().equals(courseCode)) {
-						registeredIndex.remove(i);
+						toDelete =i;
 						CourseManager.slotGivenBack(i.getIndexNum(), i.getCourseCode());
-						StudentManager.UpdateStudentDB(studentList);
+						
 					}
 				}
+				
 			}
+		}
+		if(toDelete !=null) {
+			registeredIndex.remove(toDelete);
+			StudentManager.UpdateStudentDB(studentList);
+		}else {
+			System.out.println("The student does not have that coursecode registered");
 		}
 	}
 	

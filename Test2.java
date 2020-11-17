@@ -26,11 +26,11 @@ public class Test2 {
 		Student s2 = new Student("nic_user", "pw123", "nic", "U199999", 'M', "SG", 4, s2Index, LocalTime.of(10,43,12), LocalTime.of(12,43,12));
         StaffController.addStudent(s2);
         //StudentController.removeCourseByMatricsNum("U199999", "CZ2005");
-        StudentController.addCourse("U199999", 1);
-        StudentController.printCourseRegisteredbyMatrics("U199999");
+        //StudentController.addCourse("U199999", 1);
+        //StudentController.printCourseRegisteredbyMatrics("U199999");
         //StudentController.printCourseRegisteredbyMatrics("U199999");
         //StudentController.changeIndexByMatric("U192456", 5, 4, "CZ2002");
-       // StudentController.removeCourseByMatricsNum("U199999", "CZ2002");
+        StudentController.removeCourseByMatricsNum("U199999", "CZ2002");
         //StudentController.swapIndex("U192456", 1, 4, "U199999", "123");
        // StudentController.changeIndexByMatric("U199999", 4, 1, "CZ2005");;
        // StudentController.printCourseRegisteredbyMatrics("U199999");
