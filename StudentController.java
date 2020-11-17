@@ -107,45 +107,46 @@ public class StudentController {
 		}
 		
 	//tested
-	public static void changeIndex(String MatricNum, int newIndex, int oldIndex, String Coursecode) throws ClassNotFoundException, IOException, ConcurrentModificationException { //tested
-		Integer toDelete  = -1;
-        ArrayList<Student> studentList = StudentManager.extractDB();
-        for(Student s : studentList) {
-        	ArrayList<Integer> indexList = s.getRegisteredIndex();
-            if(s.getMatricNum().equals(MatricNum)) {
-                 for (int index : s.getRegisteredIndex()) {
-                     if(index == oldIndex && IndexToCourseCode(index).equals(Coursecode)) {
-                            if (checkVacanciesForIndex(newIndex)>0) {
-                            	System.out.println("Changing Index...");
-                            	System.out.println("Successful! Changed index from "+ index + " to "+ newIndex); 	
-                            	for(Integer i : indexList) {
-                            		if (i == oldIndex) {
-                            			toDelete = i;
-                            			System.out.println("To delete is "+ toDelete);
-                            			break;
-                            		}
-                            	}
-                            	oldIndex = newIndex;
-                                CourseManager.slotTaken(newIndex,Coursecode);
-                                CourseManager.slotGivenBack(oldIndex,Coursecode);
-                             }
-                            else { 
-                            	System.out.println("There is no vacancy for this index"); 
-                            	break;
-                            	}
-                         }
-                         else System.out.println("Index is the same");
+		public static void changeIndex(String MatricNum, int newIndex, int oldIndex, String Coursecode) throws ClassNotFoundException, IOException, ConcurrentModificationException { //tested
+			Integer toDelete  = -1;
+	        ArrayList<Student> studentList = StudentManager.extractDB();
+	        for(Student s : studentList) {
+	        	ArrayList<Integer> indexList = s.getRegisteredIndex();
+	            if(s.getMatricNum().equals(MatricNum)) {
+	                 for (int index : s.getRegisteredIndex()) {
+	                     if(index == oldIndex && IndexToCourseCode(index).equals(Coursecode)) {
+	                            if (checkVacanciesForIndex(newIndex)>0) {
+	                            	System.out.println("Changing Index...");
+	                            	System.out.println("Successful! Changed index from "+ index + " to "+ newIndex); 	
+	                            	for(Integer i : indexList) {
+	                            		if (i == oldIndex) {
+	                            			toDelete = i;
+	                            			System.out.println("To delete is "+ toDelete);
+	                            			break;
+	                            		}
+	                            	}
+	                            	oldIndex = newIndex;
+	                                CourseManager.slotTaken(newIndex,Coursecode);
+	                                CourseManager.slotGivenBack(oldIndex,Coursecode);
+	                             }
+	                            else { 
+	                            	System.out.println("There is no vacancy for this index"); 
+	                            	break;
+	                            	}
+	                        	indexList.remove(toDelete);
+	                	     	indexList.add(newIndex);
+	                         }
+	                         else System.out.println("Index is the same");
 
-                     }
-                 
+	                     }
+	                 
 
-                 }
-        	indexList.remove(toDelete);
-	     	indexList.add(newIndex);
-        	StudentManager.UpdateStudentDB(studentList);
-            }
-	     
-        }
+	                 }
+
+	        	StudentManager.UpdateStudentDB(studentList);
+	            }
+		     
+	        }
     
 	
 	public static void swapIndex(String ownMatricNum, int OwnIndex, int PeerIndex, String peerMatricNum, String peerpw) throws ClassNotFoundException, IOException {

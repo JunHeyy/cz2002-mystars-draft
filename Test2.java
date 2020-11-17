@@ -25,10 +25,10 @@ public class Test2 {
 		StudentController.printCourseRegistered("U192456");
 		StudentController.printCourseRegistered("U199999");
 		
-		//StudentController.addCourse("U199999", 1);
-		//StudentController.removeCourse("U192456", "CZ2005");
+		//StudentController.addCourse("U199999", 4);
+		//StudentController.removeCourse("U192456", "CZ2002");
 		//StudentController.changeIndex("U192456", 5, 4, "CZ2005");
-		StudentController.swapIndex("U192456", 1, 2, "U199999", "123");
+		//StudentController.swapIndex("U192456", 5, 4, "U199999", "123");
 		
 		StudentController.printCourseRegistered("U192456");
 		StudentController.printCourseRegistered("U199999");
