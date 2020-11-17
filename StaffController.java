@@ -7,7 +7,7 @@ public class StaffController{
 
 	public void editStudentAccessPeriod(String matricNum, LocalTime startTime, LocalTime endTime) {
 		try {
-	        ArrayList<Student> studentList = IOController.readFile("src/data/Students.dat");
+	        ArrayList<Student> studentList = StudentManager.extractDB();
 	        for (Student s: studentList) { 
         		if(s.getMatricNum() == matricNum) {
         			s.setStartAccessTime(startTime);
@@ -53,7 +53,7 @@ public class StaffController{
 		}
 	}
 	
-	public void updateCourse(String newCode, String newAUS, Index[] newIndexlist) {
+	public void updateCourse(String newCode, String newAUS, ArrayList<Index> newIndexlist) {
 		//TODO
 
 	}

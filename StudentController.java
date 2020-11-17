@@ -16,7 +16,7 @@ public class StudentController {
 			for(Index i: student.getRegisteredIndex()) {
 				if(newIndex == i) {
 					System.out.println("Index is already registered with this student");
-					found=1;
+					found=1;	
 				}
 			}
 			if(found==0) {

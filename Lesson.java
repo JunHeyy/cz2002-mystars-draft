@@ -1,4 +1,6 @@
 import java.io.Serializable;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Lesson implements Serializable {
@@ -6,13 +8,16 @@ public class Lesson implements Serializable {
     private String type;
     private String venue;
     private String groupId;
-    private ArrayList<Timeslot> timeslots;
 
-    public Lesson(String type, String venue, String groupId, ArrayList<Timeslot> timeslots) {
+    private String day, startTime, endTime;
+
+    public Lesson(String type, String venue, String groupId, String day, String startTime, String endTime) {
         this.type = type;
         this.venue = venue;
-        this.groupId = groupId;
-        this.timeslots = timeslots;
+        this.groupId = groupId;;
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public String getType() {
@@ -39,14 +44,30 @@ public class Lesson implements Serializable {
         this.groupId = groupId;
     }
 
-    public ArrayList<Timeslot> getTimeslots() {
-        return this.timeslots;
-    }
+	public String getDay() {
+		return day;
+	}
 
-    public void setTimeslots(ArrayList<Timeslot> timeslots) {
-        this.timeslots = timeslots;
-    }
-    public String toString() {
-    	return this.type +","+ this.venue + "," +this.groupId +","+this.timeslots;
-    }
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
+
+
 }
