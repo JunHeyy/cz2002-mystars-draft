@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 
 import javax.sound.midi.SysexMessage;
 
-public class Test2 {
+public class Test2  implements Serializable {
 	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, IOException, NoSuchAlgorithmException {
 		//ArrayList<Integer> s1Index = new ArrayList<Integer>();
 		//Student s1 = new Student("dan_user", "pw123", "dan", "U192456", 'M', "SG", 4, s1Index, LocalTime.of(10,43,12), LocalTime.of(12,43,12));

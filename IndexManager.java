@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.io.*;
 
-public class IndexManager {
+public class IndexManager implements Serializable {
 	private static String filename = "data/Index.dat";
 	
     public static void addIndex(Index newIndex) throws IOException, ClassNotFoundException {

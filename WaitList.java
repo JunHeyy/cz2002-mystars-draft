@@ -1,4 +1,6 @@
-public class WaitList {
+import java.io.Serializable;
+
+public class WaitList implements Serializable {
     private int indexNum;
     private String matricsNum;
 
