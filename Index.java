@@ -8,7 +8,6 @@ public class Index implements Serializable{
     private int maxSize;
     private int numStudents;
     private ArrayList<Lesson> lessons;
-    
 
 
 
