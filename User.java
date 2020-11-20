@@ -9,7 +9,7 @@ public class User implements Serializable {
 
     public User(String username, String password, String accountType) {
         this.username = username;
-        this.password = password;
+        this.password = Hashing.hashPassword(password);
         this.accountType = accountType;
     }
 

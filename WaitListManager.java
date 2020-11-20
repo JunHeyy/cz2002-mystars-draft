@@ -64,8 +64,8 @@ public class WaitListManager implements Serializable {
         if(indexAvailable){
             StudentController.addCourse(assignToMatrics,index);
             removeWaitList(index, assignToMatrics);
-            String RECIPIENT = "junjiexavier37@gmail.com";
-            String[] to = { RECIPIENT };
+            String to = "junjiexavier37@gmail.com";
+            //String[] to = { RECIPIENT };
             //Real account
             MailManager.sendFromGMail("ntuchinesetiger@gmail.com","@Testing123",to,"Congratulations!"
                     ,"Your course is sucessfully registered");
