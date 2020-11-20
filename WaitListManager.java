@@ -26,7 +26,7 @@ public class WaitListManager {
 
     }
 
-    public static void removeWaitList(int index, int matricsNum) throws IOException, ClassNotFoundException {
+    public static void removeWaitList(int index, String matricsNum) throws IOException, ClassNotFoundException {
         waitList = extractDB();
         WaitList toDelete = null;
         for (WaitList w: waitList) {
@@ -62,6 +62,7 @@ public class WaitListManager {
         }
         if(indexAvailable){
             StudentController.addCourse(assignToMatrics,index);
+            removeWaitList(index, assignToMatrics);
             String RECIPIENT = "junjiexavier37@gmail.com";
             String[] to = { RECIPIENT };
             MailManager.sendFromGMail("ntuchinesetiger@gmail.com","Testing123",to,"Congratulations!"
