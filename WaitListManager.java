@@ -48,27 +48,27 @@ public class WaitListManager implements Serializable {
 
 
     }
-    public static void checkWaitList(int index) throws IOException, ClassNotFoundException {
+    public static void checkWaitList(int indexNum) throws IOException, ClassNotFoundException {
 
         //Send email to student that is waiting and vacancies is available
         String assignToMatrics = null;
         Boolean indexAvailable = false;
         waitList = extractDB();
         for(WaitList w : waitList){
-            if(w.getIndexNum() == index && CourseManager.checkVacancies(index) > 0) {
+            if(w.getIndexNum() == indexNum && CourseManager.checkVacancies(indexNum) > 0) {
                 assignToMatrics = waitList.get(0).getMatricsNum();
                 indexAvailable = true;
                 break;
             }
         }
         if(indexAvailable){
-            StudentController.addCourse(assignToMatrics,index);
-            removeWaitList(index, assignToMatrics);
+            StudentController.addCourse(assignToMatrics,indexNum);
+            removeWaitList(indexNum, assignToMatrics);
             String to = "junjiexavier37@gmail.com";
             //String[] to = { RECIPIENT };
             //Real account
             MailManager.sendFromGMail("ntuchinesetiger@gmail.com","@Testing123",to,"Congratulations!"
-                    ,"Your course is sucessfully registered");
+                    ,"Your Index Number: " + indexNum + " Coursecode: " + CourseManager.IndexToCourseCode(indexNum)+ " has been is sucessfully registered");
 
             //Send email
         }
