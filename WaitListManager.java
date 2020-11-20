@@ -65,7 +65,8 @@ public class WaitListManager {
             removeWaitList(index, assignToMatrics);
             String RECIPIENT = "junjiexavier37@gmail.com";
             String[] to = { RECIPIENT };
-            MailManager.sendFromGMail("ntuchinesetiger@gmail.com","Testing123",to,"Congratulations!"
+            //Real account
+            MailManager.sendFromGMail("ntuchinesetiger@gmail.com","@Testing123",to,"Congratulations!"
                     ,"Your course is sucessfully registered");
 
             //Send email
