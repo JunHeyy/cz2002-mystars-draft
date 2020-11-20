@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class WaitListManager {
     private static String filename = "data/WaitList.dat";
-    private static ArrayList<WaitList> waitList;
+    private static ArrayList<WaitList> waitList = new ArrayList<WaitList>();
 
     public static void addWaitList(int indexNum, String matricsNum) throws IOException, ClassNotFoundException {
         waitList = extractDB();
@@ -19,8 +19,9 @@ public class WaitListManager {
         WaitList wl = new WaitList(indexNum, matricsNum);
         if(found==0) {
             waitList.add(wl);
-            System.out.println("Succesfully added Course into the database");
-            IOController.writeFile(filename, waitList);
+            System.out.println("Succesfully added Index into the waiting listdatabase");
+            System.out.println(wl.getIndexNum() +wl.getMatricsNum());
+            UpdateWaitListDB(waitList);
         }
 
     }
@@ -61,6 +62,11 @@ public class WaitListManager {
         }
         if(indexAvailable){
             StudentController.addCourse(assignToMatrics,index);
+            String RECIPIENT = "junjiexavier37@gmail.com";
+            String[] to = { RECIPIENT };
+            MailManager.sendFromGMail("ntuchinesetiger@gmail.com","Testing123",to,"Congratulations!"
+                    ,"Your course is sucessfully registered");
+
             //Send email
         }
 
