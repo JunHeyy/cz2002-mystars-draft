@@ -35,11 +35,13 @@ public class StudentManager {
 	        Student toDelete = null;
 	        for (Student s: studentList) {
 	            if (s.getUsername().equals(username)) {
+	            	System.out.println("Removing student from database");
 	                toDelete = s;
 	                break;
 	            }
 	        }
 	        if (toDelete != null) studentList.remove(toDelete);
+	        else if(toDelete == null) System.out.println("Student does not exist in database");
 	        IOController.writeFile(filename, studentList);
        }
        catch (FileNotFoundException exception) {

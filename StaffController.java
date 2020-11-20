@@ -43,7 +43,7 @@ public class StaffController{
     		int yearOfStudy, LocalTime startAccessTime,
     		LocalTime endAccessTime) {
 		ArrayList<Integer> registeredIndex = new ArrayList<Integer>();
-		Student student = new Student ( username,  password,  name, matricNum,  gender,  nationality, 
+		Student student = new Student ( username,  hashing.hashPassword(password),  name, matricNum,  gender,  nationality,
 										yearOfStudy,  registeredIndex,  startAccessTime, endAccessTime);
 		try {
 			StudentManager.addStudent(student);

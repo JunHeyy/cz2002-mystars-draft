@@ -6,9 +6,10 @@ public class LoginController {
         User toMatch = null;
         if (accountType.equals("Student")) {
             try {
-                ArrayList<Student> studentList = IOController.readFile("src/data/Students.dat");
+                ArrayList<Student> studentList = IOController.readFile("data/Students.dat");
                 for (Student s: studentList) {
                     if (s.getUsername().equals(username)) {
+                        System.out.println("Please wait while we log you in...");
                         toMatch = s;
                         break;
                     }
@@ -20,9 +21,10 @@ public class LoginController {
         }
         else if (accountType.equals("Staff")) {
             try {
-                ArrayList<Staff> staffList = IOController.readFile("src/data/Staff.dat");
+                ArrayList<Staff> staffList = IOController.readFile("data/Staff.dat");
                 for (Staff s: staffList) {
                     if (s.getUsername().equals(username)) {
+                        System.out.println("Please wait while we log you in...");
                         toMatch = s;
                         break;
                     }
@@ -37,7 +39,7 @@ public class LoginController {
             return false;
         }
         else {
-            if (toMatch.getPassword().equals(password)) return true;
+            if (toMatch.getPassword().equals(hashing.hashPassword(password))) return true;
             else return false;
         }
     }
