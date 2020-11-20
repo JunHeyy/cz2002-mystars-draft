@@ -1,9 +1,14 @@
 public class WaitList {
-    private int indexNum, matricsNum;
+    private int indexNum;
+    private String matricsNum;
 
-    public WaitList(int indexNum, int matricsNum){
+    public WaitList(int indexNum, String matricsNum){
         this.indexNum = indexNum;
         this.matricsNum= matricsNum;
+    }
+
+    public int getIndexNum() {
+        return indexNum;
     }
 
 
@@ -11,11 +16,11 @@ public class WaitList {
         this.indexNum = indexNum;
     }
 
-    public int getMatricsNum() {
+    public String getMatricsNum() {
         return matricsNum;
     }
 
-    public void setMatricsNum(int matricsNum) {
+    public void setMatricsNum(String matricsNum) {
         this.matricsNum = matricsNum;
     }
 }
