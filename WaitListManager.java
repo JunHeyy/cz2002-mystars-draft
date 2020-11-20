@@ -5,16 +5,18 @@ import java.util.ArrayList;
 public class WaitListManager {
     private static String filename = "data/WaitList.dat";
 
-    public static void addWaitList(Index newIndex) throws IOException, ClassNotFoundException {
+    public static void addWaitList(int indexNum, int matricsNum) throws IOException, ClassNotFoundException {
         ArrayList<WaitList> waitList = IOController.readFile(filename);
 
     }
 
-    public static void removeWaitList(int index) throws IOException, ClassNotFoundException {
+    public static void removeWaitList(int index, int matricsNum) throws IOException, ClassNotFoundException {
 
 
     }
     public static void checkWaitList(int index){
+
+        //Send email to student that is waiting and vacancies is available
 
     }
 
