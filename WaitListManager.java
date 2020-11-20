@@ -20,8 +20,7 @@ public class WaitListManager implements Serializable {
         WaitList wl = new WaitList(indexNum, matricsNum);
         if(found==0) {
             waitList.add(wl);
-            System.out.println("Succesfully added Index into the waiting listdatabase");
-            System.out.println(wl.getIndexNum() +wl.getMatricsNum());
+            System.out.printf("Matric Number: %s Index Number: %d has been succesfully to the Waiting List database\n", matricsNum, indexNum);
             UpdateWaitListDB(waitList);
         }
 
@@ -68,7 +67,7 @@ public class WaitListManager implements Serializable {
             //String[] to = { RECIPIENT };
             //Real account
             MailManager.sendFromGMail("ntuchinesetiger@gmail.com","@Testing123",to,"Congratulations!"
-                    ,"Your Index Number: " + indexNum + " Coursecode: " + CourseManager.IndexToCourseCode(indexNum)+ " has been is sucessfully registered");
+                    ,"Your Index Number: " + indexNum + "\nCoursecode: " + CourseManager.IndexToCourseCode(indexNum)+ "\nhas been is sucessfully registered");
 
             //Send email
         }

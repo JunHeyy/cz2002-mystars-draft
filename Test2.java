@@ -25,6 +25,7 @@ public class Test2  implements Serializable {
 		//System.out.println(CourseManager.checkVacancies(1));
 
 		WaitListManager.addWaitList(1,"U1922277E");
+		//WaitListManager.removeWaitList(1,"U1922277E");
         WaitListManager.checkWaitList(1);
 
 	}
