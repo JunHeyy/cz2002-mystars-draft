@@ -30,7 +30,7 @@ public class Test2  implements Serializable {
 
 		//This function is called in addCourse
 		WaitListManager.addWaitList(1,"U1922277E");
-		//This function is called in removeCours,SwapCourse
+		//This function is called in removeCourse,SwapCourse
         WaitListManager.checkWaitList(1);
 
 	}
