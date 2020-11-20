@@ -107,4 +107,28 @@ public class CourseManager implements StarsManager{
 			e.printStackTrace();
 		}
     }
+
+	public static int checkVacancies(int indexNum) throws ClassNotFoundException, IOException {
+		ArrayList<Course> courseList = CourseManager.extractDB();
+		for (Course c : courseList) {
+			ArrayList<Index> indexList = c.getIndexList();
+			for(Index i :indexList) {
+				if(i.getIndexNum() == indexNum) return i.getMaxSize() - i.getNumStudents();
+			}
+		}
+		return -1;
+	}
+
+	static String IndexToCourseCode(int IndexNum) {
+
+		ArrayList<Course> courseList = CourseManager.extractDB();
+		for(Course c: courseList) {
+			for(Index i : c.getIndexList()) {
+				if(i.getIndexNum() == IndexNum) {
+					return i.getCourseCode();
+				}
+			}
+		}
+		return "CourseCode not found";
+	}
 }

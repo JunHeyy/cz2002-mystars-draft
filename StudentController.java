@@ -71,7 +71,7 @@ public class StudentController {
 
 		}//Run add to waitlist
 	}
-	public static void
+
 	
 	//tested
 	public static void removeCourse(String matricsNum, String courseCode) throws ClassNotFoundException, IOException, ConcurrentModificationException {
@@ -84,12 +84,12 @@ public class StudentController {
 			if(s.getMatricNum().equals(matricsNum)) {
 				ArrayList<Integer> registeredIndex = s.getRegisteredIndex();
 				for(Integer i : registeredIndex) {
-					if(IndexToCourseCode(i).equals(courseCode)) {
+					if(CourseManager.IndexToCourseCode(i).equals(courseCode)) {
 						System.out.println("Found course code");
 						toDelete = i;
 						//registeredIndex.remove(toDelete);
 						//registeredIndex.remove(i);
-						CourseManager.slotGivenBack(i, IndexToCourseCode(i));
+						CourseManager.slotGivenBack(i, CourseManager.IndexToCourseCode(i));
 						StudentManager.UpdateStudentDB(studentList);
 						System.out.println("Course " + courseCode +" has been successfully removed");
 						removed = true;
@@ -109,7 +109,7 @@ public class StudentController {
 				 if(s.getMatricNum().equals(matricsNum)) {
 					 System.out.println("Student name: " + s.getName()+ " is registered\nCourseCode: " );
 					 for (Integer index : s.getRegisteredIndex()) {
-						 System.out.println(IndexToCourseCode(index) + "\nIndexNum: " + index);
+						 System.out.println(CourseManager.IndexToCourseCode(index) + "\nIndexNum: " + index);
 					 }
 				 }
 			 }	
@@ -123,7 +123,7 @@ public class StudentController {
 	        	ArrayList<Integer> indexList = s.getRegisteredIndex();
 	            if(s.getMatricNum().equals(MatricNum)) {
 	                 for (int index : s.getRegisteredIndex()) {
-	                     if(index == oldIndex && IndexToCourseCode(index).equals(Coursecode)) {
+	                     if(index == oldIndex && CourseManager.IndexToCourseCode(index).equals(Coursecode)) {
 	                            if (checkVacanciesForIndex(newIndex)>0) {
 	                            	System.out.println("Changing Index...");
 	                            	System.out.println("Successful! Changed index from "+ index + " to "+ newIndex); 	
@@ -175,7 +175,7 @@ public class StudentController {
 					for (Integer own : s.getRegisteredIndex()) {
 						for (Integer peer : p.getRegisteredIndex()) {
 							if (own == OwnIndex && peer == PeerIndex) {
-								if (IndexToCourseCode(own).equals(IndexToCourseCode(peer))) {	
+								if (CourseManager.IndexToCourseCode(own).equals(CourseManager.IndexToCourseCode(peer))) {
 									Count = true;
 									toDelete1 = own;
 									toDelete2 = peer;
@@ -221,7 +221,7 @@ public class StudentController {
 		for(Student s : studentList){
 			if(s.getMatricNum().equals(matricNum)) {
 				for(Integer i : s.getRegisteredIndex()) {
-					if(IndexToCourseCode(i).equals(courseCode)){
+					if(CourseManager.IndexToCourseCode(i).equals(courseCode)){
 						System.out.println("Coursecode already registered");
 						return false;
 					}
@@ -230,30 +230,19 @@ public class StudentController {
 		} return true;
 	}
 	
-	public static void checkVacancies(int indexNum) throws ClassNotFoundException, IOException {
+
+	
+
+
+
+		/*public static int checkVacancies(int indexNum) throws ClassNotFoundException, IOException {
 		ArrayList<Course> courseList = CourseManager.extractDB();
 		for (Course c : courseList) {
 			ArrayList<Index> indexList = c.getIndexList();
 			for(Index i :indexList) {
-				if(i.getIndexNum() == indexNum) {
-					int vacancies = i.getMaxSize() - i.getNumStudents();
-					System.out.printf("Vacancies left %d for Course Index: %s\n", vacancies, indexNum);
-					break;
-				}
+				if(i.getIndexNum() == indexNum) return i.getMaxSize() - i.getNumStudents();
 			}
 		}
-	}
-	
-	private static String IndexToCourseCode(int IndexNum) {
-		
-		ArrayList<Course> courseList = CourseManager.extractDB();
-		for(Course c: courseList) {
-			for(Index i : c.getIndexList()) {
-				if(i.getIndexNum() == IndexNum) {
-					return i.getCourseCode();
-				}
-			}
-		}
-		return "CourseCode not found";
-	}
+		return -1;
+	}*/
 }
