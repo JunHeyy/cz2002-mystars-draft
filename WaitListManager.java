@@ -1,8 +1,9 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class WaitListManager {
+public class WaitListManager implements Serializable {
     private static String filename = "data/WaitList.dat";
     private static ArrayList<WaitList> waitList = new ArrayList<WaitList>();
 
