@@ -20,8 +20,9 @@ public class Test2 {
 		//StudentManager.removeUser("JTOH050");
 		//StaffController.addStudent("JTOH050","abc123", "Toh Jun Jie" , "U1922277E", 'M',"Singaporean",
 				//2019, LocalTime.of(8,00,00), LocalTime.of(22,0,0));
-		LoginUI.loginProcess();
+		//LoginUI.loginProcess();
+		StudentController.checkVacancies(3);
         
-        
+
 	}
 }

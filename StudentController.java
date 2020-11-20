@@ -4,17 +4,21 @@ import java.util.ArrayList;
 
 import java.lang.reflect.Array;  
 import java.util.Arrays;
-import java.util.ConcurrentModificationException;  
+import java.util.ConcurrentModificationException;
+import java.util.Scanner;
 
 public class StudentController {
 	
 	Student student;
 	String courseCode;
 	int indexNum;
+
 	
 	//tested
 	public static void addCourse(String matricNum, int newIndex) throws ClassNotFoundException, IOException,FileNotFoundException {
 		int found=0;
+		boolean waitList = false;
+		Scanner sc = new Scanner(System.in);
 		ArrayList<Student> studentList = StudentManager.extractDB();
 		
 		if(checkVacanciesForIndex(newIndex)>0) {
@@ -61,8 +65,13 @@ public class StudentController {
 					}
 				}	
 			}
-		}else {System.out.println("The slot that you want to add has full vacancies");}
+		}else {
+			System.out.println("The slot that you want to add has full vacancies, would you like to add to wait list?(Y/N)");
+			//waitList =  sc.nextLine();
+
+		}//Run add to waitlist
 	}
+	public static void
 	
 	//tested
 	public static void removeCourse(String matricsNum, String courseCode) throws ClassNotFoundException, IOException, ConcurrentModificationException {
@@ -221,7 +230,7 @@ public class StudentController {
 		} return true;
 	}
 	
-	public void checkVacancies(int indexNum) throws ClassNotFoundException, IOException {
+	public static void checkVacancies(int indexNum) throws ClassNotFoundException, IOException {
 		ArrayList<Course> courseList = CourseManager.extractDB();
 		for (Course c : courseList) {
 			ArrayList<Index> indexList = c.getIndexList();
