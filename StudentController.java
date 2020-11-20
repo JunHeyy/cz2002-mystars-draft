@@ -67,7 +67,8 @@ public class StudentController {
 			}
 		}else {
 			System.out.println("The slot that you want to add has full vacancies, would you like to add to wait list?(Y/N)");
-			//waitList =  sc.nextLine();
+			char option =  sc.next().charAt(0);
+			if (option == 'Y') WaitListManager.addWaitList(newIndex, matricNum);
 
 		}//Run add to waitlist
 	}
@@ -95,7 +96,10 @@ public class StudentController {
 						removed = true;
 					}
 				}
-				if (toDelete != -1) registeredIndex.remove(toDelete);
+				if (toDelete != -1) {
+					registeredIndex.remove(toDelete);
+					WaitListManager.checkWaitList(toDelete);
+				}
 				StudentManager.UpdateStudentDB(studentList);
 			}
 		}
@@ -143,6 +147,7 @@ public class StudentController {
 	                            	break;
 	                            	}
 	                        	indexList.remove(toDelete);
+	                        	WaitListManager.checkWaitList(toDelete);
 	                	     	indexList.add(newIndex);
 	                         }
 	                         else System.out.println("Index is the same");
