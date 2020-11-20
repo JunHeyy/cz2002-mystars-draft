@@ -23,9 +23,14 @@ public class Test2  implements Serializable {
 				//2019, LocalTime.of(8,00,00), LocalTime.of(22,0,0));
 		//LoginUI.loginProcess();
 		//System.out.println(CourseManager.checkVacancies(1));
-
-		WaitListManager.addWaitList(1,"U1922277E");
+		//StudentController.printCourseRegistered("U1922277E");
+		//StudentController.removeCourse("U1922277E","CZ2002");
 		//WaitListManager.removeWaitList(1,"U1922277E");
+
+
+		//This function is called in addCourse
+		WaitListManager.addWaitList(1,"U1922277E");
+		//This function is called in removeCours,SwapCourse
         WaitListManager.checkWaitList(1);
 
 	}

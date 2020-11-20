@@ -27,7 +27,7 @@ public class StudentController {
 				System.out.println("The matrics num is "+ s.getMatricNum());
 				if(s.getMatricNum().equals(matricNum)) {
 					for(Integer i: s.getRegisteredIndex()) {
-						System.out.println("The value of i is " + i);
+						//System.out.println("The value of i is " + i);
 						if(i== newIndex) {
 							System.out.println("Index is already registered with this student");
 							found=1;	
