@@ -1,12 +1,19 @@
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
+/**
+ * Login UI to facilitate the login process.
+ */
 
 public class LoginUI {
-        
+
+    /**
+     * User Login interface - user input username,password and accountType to validate in LoginController
+     */
+
     public static void loginProcess() throws NoSuchAlgorithmException {
 
         boolean success = false;
-        
+
         int choice;
         Scanner sc = new Scanner(System.in);
 

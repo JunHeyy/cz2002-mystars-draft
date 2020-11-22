@@ -6,9 +6,7 @@ import javax.mail.internet.*;
  * Controller class that handles all mail related function.
  */
 public class MailManager {
-    /**
-     * Sends gmail by using javamail.
-     */
+
     //private static String USER_NAME = "kenja1523";  // GMail user name (just the part before "@gmail.com")
     //private static String PASSWORD = "aa11bb22cc33"; // GMail password
     //private static String RECIPIENT = "junjiexavier37@gmail.com";
@@ -22,6 +20,14 @@ public class MailManager {
 
         sendFromGMail(from, pass, to, subject, body);
     }*/
+    /**
+     * Sends gmail to notify students.
+     * @param from String variable, Sender email
+     * @param pass String variable, Password of the sender email.
+     * @param to String variable, Recipient email
+     * @param subject String variable, Subject of the email
+     * @param body String variable,  Body of the email
+     */
 
 
 

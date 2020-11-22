@@ -12,9 +12,9 @@ public class StudentManager {
 
 	/**
 	 * Adds student into the studentDB.
-	 * @param student
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param student Student object
+	 * @throws IOException File does not exist.
+	 * @throws ClassNotFoundException Mentioned classes are not found in the classpath.
 	 */
 
     public static void addStudent(Student student) throws IOException, ClassNotFoundException {
@@ -42,9 +42,9 @@ public class StudentManager {
 
      /**
 	 * Removes Student from the Student Database
-	 * @param username
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param username String variable, Username of the student.
+	  * @throws IOException File does not exist.
+	  * @throws ClassNotFoundException Mentioned classes are not found in the classpath.
 	 */
     public static void removeUser(String username) throws IOException, ClassNotFoundException {
        try {
@@ -69,9 +69,9 @@ public class StudentManager {
 
 	/**
 	 * Returns the current Arraylist of Students in the Student database.
-	 * @return
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @return Returns the arraylist of student in database.
+	 * @throws IOException File does not exist.
+	 * @throws ClassNotFoundException Mentioned classes are not found in the classpath.
 	 */
     public static ArrayList<Student> extractDB() throws IOException, ClassNotFoundException {
     	try {
@@ -87,7 +87,7 @@ public class StudentManager {
 
 	/**
 	 * This function updates the StudentDB.dat file
-	 * @param studentList
+	 * @param studentList Arraylist of student objects.
 	 */
 
 	public static void UpdateStudentDB(ArrayList<Student> studentList) {

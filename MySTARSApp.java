@@ -2,6 +2,10 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
+/**
+ * Main driver class
+ */
+
 public class MySTARSApp {
     public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchAlgorithmException {
         boolean loginSuccess = false;

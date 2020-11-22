@@ -12,9 +12,9 @@ public class StaffManager {
 
     /**
      * Add staff into the staff database.
-     * @param staff
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @param staff Staff object
+     * @throws IOException File does not exist.
+     * @throws ClassNotFoundException Mentioned classes are not found in the
      */
 
     public static void addStaff(Staff staff) throws IOException, ClassNotFoundException {
@@ -36,9 +36,9 @@ public class StaffManager {
 
     /**
      * Remove staff from the database.
-     * @param username
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @param username String variable, Username of the staff.
+     * @throws IOException File does not exist.
+     * @throws ClassNotFoundException Mentioned classes are not found in the
      */
     public static void removeStaff(String username) throws IOException, ClassNotFoundException {
         staffList = IOController.readFile(filename);
@@ -55,7 +55,7 @@ public class StaffManager {
 
     /**
      * Returns the current Arraylist of staff in the staffDB.
-     * @return
+     * @return Return staff arraylist.
      */
     
     public static ArrayList<Staff> extractStaffs() {
@@ -71,7 +71,7 @@ public class StaffManager {
 
     /**
      * Updates Staff DB.
-     * @param staffList
+     * @param staffList Array list of staff objects.
      */
     public static void UpdateStaffDB(ArrayList<Staff> staffList) {
     	try {

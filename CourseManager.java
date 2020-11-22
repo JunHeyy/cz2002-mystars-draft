@@ -16,9 +16,9 @@ public class CourseManager implements StarsManager{
 
 	/**
 	 * Adds Course into the database
-	 * @param course
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param course Course object
+	 * @throws IOException File does not exist.
+	 * @throws ClassNotFoundException Mentioned classes are not found in the
 	 */
     
     public static void addCourse(Course course) throws IOException, ClassNotFoundException {
@@ -41,9 +41,9 @@ public class CourseManager implements StarsManager{
 
 	/**
 	 * Remove course from the database.
-	 * @param courseCode
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param courseCode String variable course code of the Course.
+	 * @throws IOException File does not exist.
+	 * @throws ClassNotFoundException Mentioned classes are not found in the classpath.
 	 */
 
     public static void removeCourse(String courseCode) throws IOException, ClassNotFoundException {
@@ -69,10 +69,10 @@ public class CourseManager implements StarsManager{
 
 	/**
 	 * Removes a slot from the course.
-	 * @param newIndex
-	 * @param CourseCode
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param newIndex Integer variable New Index number of student.
+	 * @param CourseCode  String variable Coursecode related to the index number.
+	 * @throws IOException File does not exist.
+	 * @throws ClassNotFoundException Mentioned classes are not found in the classpath.
 	 */
     
     public static void slotTaken(int newIndex, String CourseCode) throws IOException, ClassNotFoundException{
@@ -95,10 +95,10 @@ public class CourseManager implements StarsManager{
 
 	/**
 	 * Gives back a slot to the Course Index.
-	 * @param oldIndex
-	 * @param CourseCode
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param oldIndex Integer variable, Old index of the student.
+	 * @param CourseCode String variable, Coursecode of the index.
+	 * @throws IOException File does not exist.
+	 * @throws ClassNotFoundException Mentioned classes are not found in the classpath.
 	 */
    public static void slotGivenBack(int oldIndex, String CourseCode) throws IOException, ClassNotFoundException{
 	   	 ArrayList<Course> courseList = extractDB();
@@ -120,7 +120,7 @@ public class CourseManager implements StarsManager{
 
 	/**
 	 * Returns the Arraylist of the course in the database.
-	 * @return
+	 * @return returns the arraylist of courses.
 	 */
 
 	public static ArrayList<Course> extractDB() {
@@ -136,7 +136,7 @@ public class CourseManager implements StarsManager{
 
 	/**
 	 * This function updates the Course.dat file
-	 * @param courseList
+	 * @param courseList Arraylist of course objects.
 	 */
 
 	public static void UpdateDB(ArrayList<Course> courseList) {
@@ -150,10 +150,10 @@ public class CourseManager implements StarsManager{
 
 	/**
 	 * Checks the vacancies left in the course.
-	 * @param indexNum
-	 * @return
-	 * @throws ClassNotFoundException
-	 * @throws IOException
+	 * @param indexNum Integer variable,Index number of student.
+	 * @return Return -1 if no such index number. Else returns the index number.
+	 * @throws IOException File does not exist.
+	 * @throws ClassNotFoundException Mentioned classes are not found in the classpath.
 	 */
 
 	public static int checkVacancies(int indexNum) throws ClassNotFoundException, IOException {
@@ -169,8 +169,8 @@ public class CourseManager implements StarsManager{
 
 	/**
 	 * Converts Index Num and returns Coursecode.
-	 * @param IndexNum
-	 * @return
+	 * @param IndexNum Integer variable, Index number of student.
+	 * @return Returns the int index number.
 	 */
 
 	static String IndexToCourseCode(int IndexNum) {

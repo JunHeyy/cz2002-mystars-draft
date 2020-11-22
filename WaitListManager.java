@@ -10,8 +10,13 @@ import java.util.ArrayList;
 public class WaitListManager implements Serializable {
     private static String filename = "data/WaitList.dat";
     private static ArrayList<WaitList> waitList = new ArrayList<WaitList>();
+
     /**
-     * Adds student into wait list.
+     * Adds Student onto the waitlist.
+     * @param indexNum Integer variable, Index number of the student.
+     * @param matricsNum String variable, Matrics number of student.
+     * @throws IOException File does not exist.
+     * @throws ClassNotFoundException Mentioned classes are not found in the classpath.
      */
 
     public static void addWaitList(int indexNum, String matricsNum) throws IOException, ClassNotFoundException {
@@ -36,10 +41,10 @@ public class WaitListManager implements Serializable {
 
     /**
      * Removes student from wait list.
-     * @param index int variable
-     * @param matricsNum string variable
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @param index Integer variable, Index number of the student.
+     * @param matricsNum String variable, Matrics number of student.
+     * @throws IOException File does not exist.
+     * @throws ClassNotFoundException Mentioned classes are not found in the classpath.
      */
 
     public static void removeWaitList(int index, String matricsNum) throws IOException, ClassNotFoundException {
@@ -66,9 +71,9 @@ public class WaitListManager implements Serializable {
 
     /**
      * Check if selected student is in wait list.
-     * @param indexNum
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @param indexNum Integer variable, Index number of the student.
+     * @throws IOException File does not exist.
+     * @throws ClassNotFoundException Mentioned classes are not found in the classpath.
      */
     public static void checkWaitList(int indexNum) throws IOException, ClassNotFoundException {
 
@@ -100,8 +105,8 @@ public class WaitListManager implements Serializable {
 
     /**
      * Prints the student in Matrics Number, Index number format.
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException File does not exist.
+     * @throws ClassNotFoundException Mentioned classes are not found in the classpath.
      */
     public static void printCurrentWaitList() throws IOException, ClassNotFoundException {
         waitList = extractDB();
@@ -113,9 +118,9 @@ public class WaitListManager implements Serializable {
 
     /**
      * Returns the current Arraylist of students on the waitlist.
-     * @return returns an ArrayList from Waitlist.dat
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @return returns an ArrayList of waitlsit objects from Waitlist.dat
+     * @throws IOException File does not exist.
+     * @throws ClassNotFoundException Mentioned classes are not found in the classpath.
      */
 
 
@@ -132,7 +137,7 @@ public class WaitListManager implements Serializable {
 
     /**
      * This function updates the WaitList.dat file.
-     * @param waitList an ArrayList object.
+     * @param waitList an ArrayList of waitlist objects.
      */
 
     public static void UpdateWaitListDB(ArrayList<WaitList> waitList) {

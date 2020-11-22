@@ -1,6 +1,16 @@
 import java.util.ArrayList;
 
+/**
+ * Controller class to handle all login related functions.
+ */
 public class LoginController {
+    /**
+     * Login Controller - verifies accountType, username and password and return boolean value
+     * @param accountType String variable, Account type of the user. Staff/Student.
+     * @param username String variable, The username of the user.
+     * @param password String variable, password of the user.
+     * @return true
+     */
 
     public static boolean validate(String accountType, String username, String password) {
         User toMatch = null;
@@ -34,7 +44,7 @@ public class LoginController {
                 return false;
             }
         }
-    
+
         if (toMatch == null) {
             return false;
         }

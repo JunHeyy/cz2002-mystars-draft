@@ -14,9 +14,17 @@ public class Lesson implements Serializable {
     private String groupId;
 
     private String day, startTime, endTime, weeks;
-    
+
+
     /**
-     * Lesson constructor to create lesson object.
+     * Lesson constructor for lesson object
+     * @param type String variable, type of
+     * @param venue String variable, Venue of the lesson.
+     * @param groupId String variable, Group id of the lesson.
+     * @param day String variable, day of the lesson.
+     * @param startTime String variable, start time of the lesson.
+     * @param endTime String variable, end time of the lesson.
+     * @param weeks String variable, week of the lesson.
      */
     public Lesson(String type, String venue, String groupId, String day, String startTime, String endTime, String weeks) {
         this.type = type;
@@ -30,15 +38,16 @@ public class Lesson implements Serializable {
 
     /**
      * Accessor method to get Lesson type.
-     * @return
+     * @return the Type of the lesson
      */
 
     public String getType() {
         return this.type;
     }
+
     /**
-     * Mutator method to set Lesson type.
-     * @return
+     * Mutator method to set
+     * @param type String variable
      */
 
     public void setType(String type) {
@@ -46,15 +55,15 @@ public class Lesson implements Serializable {
     }
     /**
      * Accessor method to get Lesson venue.
-     * @return
+     * @return Venue of the lesson
      */
 
     public String getVenue() {
         return this.venue;
     }
     /**
-     * Mutator method to set Lesson venue.
-     * @return
+     * Mutator method to set the venue of the lesson.
+     * @param venue String variable
      */
 
     public void setVenue(String venue) {
@@ -62,79 +71,83 @@ public class Lesson implements Serializable {
     }
     /**
      * Accessor method to get Lesson group id.
-     * @return
+     * @return group id of the lesson
      */
 
     public String getGroupId() {
         return this.groupId;
     }
     /**
-     * Mutator method to set Lesson group id.
-     * @return
+     * Mutator method to set group id of the lesson.
+     * @param groupId String variable, group id of the lesson
      */
+
 
     public void setGroupId(String groupId) {
         this.groupId = groupId;
     }
     /**
-     * Accessor method to get Lesson day
-     * @return
+     * Accessor method to get Lesson day.
+     * @return Day of the lesson
      */
 
 	public String getDay() {
 		return day;
 	}
     /**
-     * Mutator method to set Lesson day
-     * @return
+     * Mutator method to set.
+     * @param day String variable
      */
+
 
 	public void setDay(String day) {
 		this.day = day;
 	}
     /**
      * Accessor method to get start time.
-     * @return
+     * @return start time of the lesson.
      */
 
 	public String getStartTime() {
 		return startTime;
 	}
     /**
-     * Mutator method to set lesson start time.
-     * @return
+     * Mutator method to set the start time of the lesson.
+     * @param startTime String variable, start time of the lesson.
      */
+
 
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
     /**
      * Accessor method to get Lesson end time.
-     * @return
+     * @return String variable, end time of the lesson.
      */
 
 	public String getEndTime() {
 		return endTime;
 	}
     /**
-     * Mutator method to set end time.
-     * @return
+     * Mutator method to set the end time of the lesson.
+     * @param endTime String variable
      */
+
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
     /**
      * Accessor method to get Lesson weeks.
-     * @return
+     * @return Weeks of the lesson
      */
 
 	public String getWeeks() {
 		return weeks;
 	}
     /**
-     * Mutator method to set lesson weeks.
-     * @return
+     * Mutator method to set.
+     * @param weeks String variable
      */
 
 	public void setWeeks(String weeks) {

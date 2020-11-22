@@ -2,9 +2,17 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Class that handles all the hashing of password using MD5Hash
+ * */
 
 public class hashing {
 
+    /**
+     * Hash the input password using MD5Hash
+     * @param password - String varaible of the password to be hashed
+     * @return returns a String of the input password in MD5Hash format
+     */
     public static String hashPassword(String password) {
         try {
 
@@ -30,7 +38,7 @@ public class hashing {
         catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
-        }
+    }
 
 
     public static void main(String[] args) {

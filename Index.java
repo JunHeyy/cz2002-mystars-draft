@@ -15,11 +15,11 @@ public class Index implements Serializable{
 
     /**
      * Constructor for index object
-     * @param indexNum
-     * @param courseCode
-     * @param maxSize
-     * @param numStudents
-     * @param lessons
+     * @param indexNum Integer variable, index number of the student.
+     * @param courseCode String variable, Coursecode of the course.
+     * @param maxSize Integer variable, Max number of students in the index.
+     * @param numStudents Integer variable, Number of students in the index.
+     * @param lessons Arraylist variable, an array list of lesson objects.
      */
 
     public Index(int indexNum, String courseCode, int maxSize, int numStudents, ArrayList<Lesson> lessons) {
@@ -35,7 +35,7 @@ public class Index implements Serializable{
 
     /**
      * Accessor method for index number.
-     * @return
+     * @return Index number of that course.
      */
 
     public int getIndexNum() {
@@ -44,7 +44,7 @@ public class Index implements Serializable{
 
     /**
      * Mutator method to set index number.
-     * @param indexNum
+     * @param indexNum Integer variable, index number of the student.
      */
 
     public void setIndexNum(int indexNum) {
@@ -53,7 +53,7 @@ public class Index implements Serializable{
 
     /**
      * Accessor method to get course code.
-     * @return
+     * @return Returns String variable, course code.
      */
 
     public String getCourseCode() {
@@ -62,7 +62,7 @@ public class Index implements Serializable{
 
     /**
      * Mutator method to set coursecode.
-     * @param courseCode
+     * @param courseCode Course code in string.
      */
 
     public void setCourseCode(String courseCode) {
@@ -71,7 +71,7 @@ public class Index implements Serializable{
 
     /**
      * Accessor method to get max size for that index.
-     * @return
+     * @return returns max size of that index.
      */
 
     public int getMaxSize() {
@@ -80,7 +80,7 @@ public class Index implements Serializable{
 
     /**
      * Mutator method to set max size for the index.
-     * @param maxSize
+     * @param maxSize Integer variable, Max number of students in the index.
      */
 
     public void setMaxSize(int maxSize) {
@@ -89,7 +89,7 @@ public class Index implements Serializable{
 
     /**
      * Accessor method to get number of students for that index.
-     * @return
+     * @return returns number of students in the lesson.
      */
 
     public int getNumStudents() {
@@ -98,7 +98,7 @@ public class Index implements Serializable{
 
     /**
      * Mutator method to set number of students for that course.
-     * @param numStudents
+     * @param numStudents Integer variable, Number of students in the index.
      */
 
     public void setNumStudents(int numStudents) {
@@ -107,7 +107,7 @@ public class Index implements Serializable{
 
     /**
      * Returns the Arraylist lesson.
-     * @return
+     * @return returns a lesson Arraylist
      */
 
     public ArrayList<Lesson> getLessons() {
@@ -116,7 +116,7 @@ public class Index implements Serializable{
 
     /**
      * Mutator method to set Arraylist lesson for index.
-     * @param lessons
+     * @param lessons object
      */
 
     public void setLessons(ArrayList<Lesson> lessons) {

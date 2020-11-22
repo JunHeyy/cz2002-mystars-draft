@@ -1,12 +1,24 @@
 import java.time.*;
 import java.io.Serializable;
 
+/**
+ * Concrete class to create timeslot objects.
+ */
+
 public class Timeslot implements Serializable{
 
     private DayOfWeek day;
     private LocalTime startTime;
     private LocalTime endTime;
     private int[] weeks;
+
+    /**
+     * Constructor method for timeslot object
+     * @param day
+     * @param startTime
+     * @param endTime
+     * @param weeks
+     */
 
     public Timeslot(DayOfWeek day, LocalTime startTime, LocalTime endTime, int[] weeks) {
 		// TODO Auto-generated constructor stub
