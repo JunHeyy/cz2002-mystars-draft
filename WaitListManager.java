@@ -2,12 +2,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+/**
+ * Controller class that handles all the wait list related functions
+ */
+
 
 public class WaitListManager implements Serializable {
     private static String filename = "data/WaitList.dat";
     private static ArrayList<WaitList> waitList = new ArrayList<WaitList>();
+    /**
+     * Adds student into wait list.
+     */
 
     public static void addWaitList(int indexNum, String matricsNum) throws IOException, ClassNotFoundException {
+
         waitList = extractDB();
         int found =0;
         for(WaitList w : waitList) {
@@ -25,6 +33,14 @@ public class WaitListManager implements Serializable {
         }
 
     }
+
+    /**
+     * Removes student from wait list.
+     * @param index int variable
+     * @param matricsNum string variable
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
 
     public static void removeWaitList(int index, String matricsNum) throws IOException, ClassNotFoundException {
         waitList = extractDB();
@@ -47,6 +63,13 @@ public class WaitListManager implements Serializable {
 
 
     }
+
+    /**
+     * Check if selected student is in wait list.
+     * @param indexNum
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void checkWaitList(int indexNum) throws IOException, ClassNotFoundException {
 
         //Send email to student that is waiting and vacancies is available
@@ -74,6 +97,12 @@ public class WaitListManager implements Serializable {
 
 
     }
+
+    /**
+     * Prints the student in Matrics Number, Index number format.
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void printCurrentWaitList() throws IOException, ClassNotFoundException {
         waitList = extractDB();
         for(WaitList w : waitList){
@@ -82,8 +111,12 @@ public class WaitListManager implements Serializable {
     }
 
 
-
-
+    /**
+     * Returns the current Arraylist of students on the waitlist.
+     * @return returns an ArrayList from Waitlist.dat
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
 
 
     public static ArrayList<WaitList> extractDB() throws IOException, ClassNotFoundException {
@@ -96,6 +129,11 @@ public class WaitListManager implements Serializable {
             return null;
         }
     }
+
+    /**
+     * This function updates the WaitList.dat file.
+     * @param waitList an ArrayList object.
+     */
 
     public static void UpdateWaitListDB(ArrayList<WaitList> waitList) {
         try {

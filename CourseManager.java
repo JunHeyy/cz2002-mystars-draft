@@ -6,11 +6,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+/**
+ * Controller class that handles all course related functions.
+ */
 public class CourseManager implements StarsManager{
 	
     private static ArrayList<Course> courseList;
     private static final String filename = "data/Course.dat";
-    
+
+	/**
+	 * Adds Course into the database
+	 * @param course
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
     
     public static void addCourse(Course course) throws IOException, ClassNotFoundException {
         
@@ -29,6 +38,13 @@ public class CourseManager implements StarsManager{
 	        IOController.writeFile(filename, courseList);
         }
     }
+
+	/**
+	 * Remove course from the database.
+	 * @param courseCode
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 
     public static void removeCourse(String courseCode) throws IOException, ClassNotFoundException {
     	courseList = IOController.readFile(filename);
@@ -50,6 +66,14 @@ public class CourseManager implements StarsManager{
         }
         
     }
+
+	/**
+	 * Removes a slot from the course.
+	 * @param newIndex
+	 * @param CourseCode
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
     
     public static void slotTaken(int newIndex, String CourseCode) throws IOException, ClassNotFoundException{
    	 ArrayList<Course> courseList = extractDB();
@@ -68,7 +92,14 @@ public class CourseManager implements StarsManager{
    		 }
    	 }
    }
-   
+
+	/**
+	 * Gives back a slot to the Course Index.
+	 * @param oldIndex
+	 * @param CourseCode
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
    public static void slotGivenBack(int oldIndex, String CourseCode) throws IOException, ClassNotFoundException{
 	   	 ArrayList<Course> courseList = extractDB();
 	   	 for(Course c: courseList) {
@@ -86,8 +117,13 @@ public class CourseManager implements StarsManager{
 	   		 }
 	   	 }
   }
-    
-    public static ArrayList<Course> extractDB() {
+
+	/**
+	 * Returns the Arraylist of the course in the database.
+	 * @return
+	 */
+
+	public static ArrayList<Course> extractDB() {
     	try {
 	        ArrayList<Course> courseList = IOController.readFile(filename);
 	        return courseList;
@@ -97,9 +133,13 @@ public class CourseManager implements StarsManager{
 			return null;
 		}
     }
-    
-    
-    public static void UpdateDB(ArrayList<Course> courseList) {
+
+	/**
+	 * This function updates the Course.dat file
+	 * @param courseList
+	 */
+
+	public static void UpdateDB(ArrayList<Course> courseList) {
     	try {
 			IOController.writeFile(filename, courseList);
 		} catch (IOException e) {
@@ -107,6 +147,14 @@ public class CourseManager implements StarsManager{
 			e.printStackTrace();
 		}
     }
+
+	/**
+	 * Checks the vacancies left in the course.
+	 * @param indexNum
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 
 	public static int checkVacancies(int indexNum) throws ClassNotFoundException, IOException {
 		ArrayList<Course> courseList = CourseManager.extractDB();
@@ -118,6 +166,12 @@ public class CourseManager implements StarsManager{
 		}
 		return -1;
 	}
+
+	/**
+	 * Converts Index Num and returns Coursecode.
+	 * @param IndexNum
+	 * @return
+	 */
 
 	static String IndexToCourseCode(int IndexNum) {
 

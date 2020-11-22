@@ -2,7 +2,13 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
+/**
+ * Controller class that handles all mail related function.
+ */
 public class MailManager {
+    /**
+     * Sends gmail by using javamail.
+     */
     //private static String USER_NAME = "kenja1523";  // GMail user name (just the part before "@gmail.com")
     //private static String PASSWORD = "aa11bb22cc33"; // GMail password
     //private static String RECIPIENT = "junjiexavier37@gmail.com";
@@ -17,7 +23,9 @@ public class MailManager {
         sendFromGMail(from, pass, to, subject, body);
     }*/
 
-    static void sendFromGMail(String from, String pass, String to, String subject, String body) {
+
+
+    public static void sendFromGMail(String from, String pass, String to, String subject, String body) {
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";
         props.put("mail.smtp.starttls.enable", "true");

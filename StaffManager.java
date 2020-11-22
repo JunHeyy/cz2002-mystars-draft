@@ -1,10 +1,21 @@
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Controller class that handles all staff related functions.
+ */
+
 public class StaffManager {
 
     private static ArrayList<Staff> staffList;
     private static final String filename = "data/Staff.dat";
+
+    /**
+     * Add staff into the staff database.
+     * @param staff
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
 
     public static void addStaff(Staff staff) throws IOException, ClassNotFoundException {
         staffList = IOController.readFile(filename);
@@ -23,6 +34,12 @@ public class StaffManager {
         
     }
 
+    /**
+     * Remove staff from the database.
+     * @param username
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void removeStaff(String username) throws IOException, ClassNotFoundException {
         staffList = IOController.readFile(filename);
         Staff toDelete = null;
@@ -35,7 +52,11 @@ public class StaffManager {
         if (toDelete != null) staffList.remove(toDelete);
         UpdateStaffDB(staffList);
     }
-    
+
+    /**
+     * Returns the current Arraylist of staff in the staffDB.
+     * @return
+     */
     
     public static ArrayList<Staff> extractStaffs() {
     	try {
@@ -47,7 +68,11 @@ public class StaffManager {
 			return null;
 		}
     }
-    
+
+    /**
+     * Updates Staff DB.
+     * @param staffList
+     */
     public static void UpdateStaffDB(ArrayList<Staff> staffList) {
     	try {
 			IOController.writeFile(filename, staffList);

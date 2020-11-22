@@ -1,10 +1,21 @@
 import java.io.*;
 import java.util.ArrayList;
 
+
+/**
+ * Controller class that handles all student related functions.
+ */
 public class StudentManager {
 
     private static ArrayList<Student> studentList;
     private static final String filename = "data/Students.dat";
+
+	/**
+	 * Adds student into the studentDB.
+	 * @param student
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 
     public static void addStudent(Student student) throws IOException, ClassNotFoundException {
         try {
@@ -29,6 +40,12 @@ public class StudentManager {
         
     }
 
+     /**
+	 * Removes Student from the Student Database
+	 * @param username
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
     public static void removeUser(String username) throws IOException, ClassNotFoundException {
        try {
 	    	studentList = IOController.readFile(filename);
@@ -49,7 +66,13 @@ public class StudentManager {
        }
        
     }
-    
+
+	/**
+	 * Returns the current Arraylist of Students in the Student database.
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
     public static ArrayList<Student> extractDB() throws IOException, ClassNotFoundException {
     	try {
 	        ArrayList<Student> studentList = IOController.readFile(filename);
@@ -61,8 +84,13 @@ public class StudentManager {
 		}
     	
     }
-    
-    public static void UpdateStudentDB(ArrayList<Student> studentList) {
+
+	/**
+	 * This function updates the StudentDB.dat file
+	 * @param studentList
+	 */
+
+	public static void UpdateStudentDB(ArrayList<Student> studentList) {
     	try {
 			IOController.writeFile(filename, studentList);
 		} catch (IOException e) {
